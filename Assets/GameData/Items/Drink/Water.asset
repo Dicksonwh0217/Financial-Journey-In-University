@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a95da69efdf5949aeddab4f857e25a, type: 3}
+  m_Name: Water
+  m_EditorClassIdentifier: 
+  Name: Water Bottle
+  stackable: 1
+  description: Drink it.
+  itemType: 1
+  icon: {fileID: 21300000, guid: 1f9908f2305607948bbb1d8e91f3b920, type: 3}
+  onAction: {fileID: 0}
+  onTileMapAction: {fileID: 0}
+  onItemUsed: {fileID: 0}
+  itemIconHighlight: 0
+  itemPrefab: {fileID: 0}
+  price: 0
+  canBeSold: 0
+  consumable: 1
+  hungerRestoreAmount: 0
+  thirstRestoreAmount: 8
+  healthRestoreAmount: 0
+  happinessRestoreAmount: 0

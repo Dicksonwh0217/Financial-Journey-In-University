@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab15a90077b0bf144aba76ae42650a5e, type: 3}
   m_Name: New Actor
   m_EditorClassIdentifier: 
-  Name: Kevin
+  Name: Angel
   portrait: {fileID: 21300000, guid: a439f22cab84853469ce49971f173533, type: 3}

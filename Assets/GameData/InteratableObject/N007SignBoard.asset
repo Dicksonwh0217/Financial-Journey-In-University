@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01d9cb8d866de2b48bc0445f1d2139dc, type: 3}
+  m_Name: N007SignBoard
+  m_EditorClassIdentifier: 
+  Name: SignBoard
+  gender: 2
+  protraits:
+    normal: {fileID: 0}
+    surprised: {fileID: 0}
+    confused: {fileID: 0}
+    angry: {fileID: 0}
+  characterPrefab: {fileID: 0}
+  canBeRomanced: 0
+  romancableGender: 2
+  itemLikes: []
+  itemDislikes: []
+  generalDialogues:
+  - {fileID: 11400000, guid: b65076f49c64f1d4187338f1f175c0c3, type: 2}
+  schedule: 

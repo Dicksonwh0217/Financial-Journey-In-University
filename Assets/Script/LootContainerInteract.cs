@@ -8,15 +8,32 @@ public class LootContainerInteract : Interactable
     [SerializeField] GameObject openedChest;
     [SerializeField] bool opened;
     [SerializeField] AudioClip onOpenAudio;
+    [SerializeField] AudioClip onCloseAudio;
+    [SerializeField] ItemContainer itemContainer;
+
     public override void Interact(Character character)
     {
         if (opened == false)
         {
-            opened = true;
-            closedChest.SetActive(false);
-            openedChest.SetActive(true);
-
-            AudioManager.instance.Play(onOpenAudio);
+            Open(character);
         }
+    }
+
+    public void Open(Character character)
+    {
+        opened = true;
+        closedChest.SetActive(false);
+        openedChest.SetActive(true);
+        AudioManager.instance.Play(onOpenAudio);
+        character.GetComponent<ItemContainerInteractController>().Open(itemContainer, transform);
+    }
+
+    public void Close(Character character)
+    {
+        opened = false;
+        closedChest.SetActive(true);
+        openedChest.SetActive(false);
+        AudioManager.instance.Play(onCloseAudio);
+        character.GetComponent<ItemContainerInteractController>().Close();
     }
 }

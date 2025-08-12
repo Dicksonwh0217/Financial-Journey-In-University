@@ -35,7 +35,7 @@ public class ScreenTint : MonoBehaviour
 
     private IEnumerator TintScreen()
     {
-        while(f < 1f)
+        while (f < 1f)
         {
             f += Time.deltaTime * speed;
             f = Mathf.Clamp(f, 0, 1f);
@@ -60,6 +60,35 @@ public class ScreenTint : MonoBehaviour
             image.color = c;
 
             yield return new WaitForEndOfFrame();
+        }
+    }
+    public IEnumerator TintCoroutine()
+    {
+        f = 0f;
+        while (f < 1f)
+        {
+            f += Time.deltaTime * speed;
+            f = Mathf.Clamp01(f);
+
+            Color c = Color.Lerp(unTintedColor, tintedColor, f);
+            image.color = c;
+
+            yield return null;
+        }
+    }
+
+    public IEnumerator UnTintCoroutine()
+    {
+        f = 0f;
+        while (f < 1f)
+        {
+            f += Time.deltaTime * speed;
+            f = Mathf.Clamp01(f);
+
+            Color c = Color.Lerp(tintedColor, unTintedColor, f);
+            image.color = c;
+
+            yield return null;
         }
     }
 }

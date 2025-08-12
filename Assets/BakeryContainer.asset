@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a4e5dfb4d3209a40811f9339f1cf943, type: 3}
+  m_Name: BakeryContainer
+  m_EditorClassIdentifier: 
+  slots:
+  - item: {fileID: 11400000, guid: 00d835f6144849443bd36532c9a93482, type: 2}
+    count: 99
+  - item: {fileID: 11400000, guid: 982f9ca9424139a41adf532a557efa20, type: 2}
+    count: 99
+  - item: {fileID: 11400000, guid: a5feb51b1a29df74eb1103141c2de740, type: 2}
+    count: 99
+  - item: {fileID: 11400000, guid: b44351c023c3b64429031bbd971251ff, type: 2}
+    count: 99
+  - item: {fileID: 11400000, guid: aa0c72389860e25468eac6515a79a30f, type: 2}
+    count: 99
+  isDirty: 0

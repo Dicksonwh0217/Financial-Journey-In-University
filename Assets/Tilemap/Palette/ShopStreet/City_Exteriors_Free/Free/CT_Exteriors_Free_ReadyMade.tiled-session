@@ -1,0 +1,40 @@
+{
+    "activeFile": "ReadyMade/FreeReadyMade.tmx",
+    "expandedProjectPaths": [
+        ".",
+        "ReadyMade"
+    ],
+    "fileStates": {
+        "ReadyMade/CT_Exteriors_Free.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 3
+        },
+        "ReadyMade/City_Exteriors_Free.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "ReadyMade/FreeReadyMade.tmx": {
+            "scale": 2,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 181.5,
+                "y": 90
+            }
+        },
+        "ReadyMade/FreeReadyMade.tmx#ExhaustFan": {
+            "scaleInDock": 1
+        }
+    },
+    "last.externalTilesetPath": "D:/Pixels/CT_Exteriors/Free/ReadyMade",
+    "last.imagePath": "D:/Pixels/CT_Exteriors/Free",
+    "openFiles": [
+        "ReadyMade/FreeReadyMade.tmx",
+        "ReadyMade/City_Exteriors_Free.tsx"
+    ],
+    "project": "",
+    "recentFiles": [
+        "ReadyMade/City_Exteriors_Free.tsx",
+        "ReadyMade/FreeReadyMade.tmx",
+        "ReadyMade/CT_Exteriors_Free.tsx"
+    ]
+}

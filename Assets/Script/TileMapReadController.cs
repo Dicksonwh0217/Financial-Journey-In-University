@@ -6,24 +6,20 @@ using UnityEngine.Tilemaps;
 public class TileMapReadController : MonoBehaviour
 {
     [SerializeField] Tilemap tilemap;
-    [SerializeField] List<TileData> tileDatas;
-    Dictionary<TileBase, TileData> dataFromTiles;
-
-    private void Start()
-    {
-        dataFromTiles = new Dictionary<TileBase, TileData>();
-
-        foreach(TileData tileData in tileDatas)
-        {
-            foreach (TileBase tile in tileData.tiles)
-            {
-                dataFromTiles.Add(tile, tileData);
-            }
-        }
-    }
+    public PlaceableObjectsReferenceManager placeableObjectsManager;
 
     public Vector3Int GetGridPosition(Vector2 position, bool mousePosition)
     {
+        if (tilemap == null)
+        {
+            tilemap = GameObject.Find("BaseTilemap").GetComponent<Tilemap>();
+        }
+
+        if (tilemap == null)
+        {
+            return Vector3Int.zero;
+        }
+
         Vector3 worldPosition;
 
         if (mousePosition)
@@ -42,14 +38,19 @@ public class TileMapReadController : MonoBehaviour
 
     public TileBase GetTileBase(Vector3Int gridPosition)
     {
+        if (tilemap == null)
+        {
+            tilemap = GameObject.Find("BaseTilemap").GetComponent<Tilemap>();
+        }
+
+        if (tilemap == null)
+        {
+            return null;
+        }
+
         TileBase tile = tilemap.GetTile(gridPosition);
 
         return tile;
 
-    }
-
-    public TileData GetTileData(TileBase tilebase)
-    {
-        return dataFromTiles[tilebase];
     }
 }

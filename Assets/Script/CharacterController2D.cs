@@ -13,8 +13,8 @@ public class CharacterController2D : MonoBehaviour
     Animator animator;
     public bool moving;
     bool running;
+    bool manualAnimationControl = false; // Flag to prevent Update from controlling animations
 
-    // Start is called before the first frame update
     void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
@@ -35,36 +35,79 @@ public class CharacterController2D : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
-        motionVector = new Vector2
-            (Input.GetAxisRaw("Horizontal"),
-            Input.GetAxisRaw("Vertical")
-            );
-        animator.SetFloat("horizontal", Input.GetAxisRaw("Horizontal"));
-        animator.SetFloat("vertical", Input.GetAxisRaw("Vertical"));
+        motionVector = new Vector2(horizontal, vertical);
 
-        moving = horizontal != 0 || vertical != 0;
-        animator.SetBool("moving", moving);
-
-        if (horizontal != 0 || vertical != 0)
+        // Only update animator if not under manual control
+        if (!manualAnimationControl)
         {
-            lastMotionVector = new Vector2(
-                horizontal,
-                vertical
-                ).normalized;
+            animator.SetFloat("horizontal", horizontal);
+            animator.SetFloat("vertical", vertical);
 
-            animator.SetFloat("lastHorizontal", horizontal);
-            animator.SetFloat("lastVertical", vertical);
+            moving = horizontal != 0 || vertical != 0;
+            animator.SetBool("moving", moving);
+
+            if (horizontal != 0 || vertical != 0)
+            {
+                lastMotionVector = new Vector2(horizontal, vertical).normalized;
+                animator.SetFloat("lastHorizontal", horizontal);
+                animator.SetFloat("lastVertical", vertical);
+            }
         }
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        Move();
+        // Only apply physics-based movement if not under manual control
+        if (!manualAnimationControl)
+        {
+            Move();
+        }
     }
 
     private void Move()
     {
-        rigidbody2d.velocity = motionVector * ( running == true ? runSpeed : speed);;
+        rigidbody2d.linearVelocity = motionVector * (running == true ? runSpeed : speed);
+    }
+
+    private void OnDisable()
+    {
+        rigidbody2d.linearVelocity = Vector2.zero;
+    }
+
+    public void WalkDown()
+    {
+        StartCoroutine(SmoothWalkDown());
+    }
+
+    private IEnumerator SmoothWalkDown()
+    {
+        // Take manual control of animations and physics
+        manualAnimationControl = true;
+        rigidbody2d.linearVelocity = Vector2.zero;
+
+        Vector3 startPos = transform.position;
+        Vector3 endPos = startPos + new Vector3(0, -1.5f, 0);
+        float duration = 0.8f;
+
+        // Set animation to show downward movement
+        animator.SetFloat("lastHorizontal", 0);
+        animator.SetFloat("lastVertical", -1);
+        animator.SetBool("moving", true);
+
+        // Update last motion vector for consistency
+        lastMotionVector = Vector2.down;
+
+        for (float t = 0; t < duration; t += Time.deltaTime)
+        {
+            transform.position = Vector3.Lerp(startPos, endPos, t / duration);
+            yield return null;
+        }
+
+        // Ensure we reach the exact end position
+        transform.position = endPos;
+
+        // Stop the movement animation and return control to Update
+        animator.SetBool("moving", false);
+        manualAnimationControl = false;
     }
 }

@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79869cc55b1214e479789fe76c3c6d08, type: 3}
+  m_Name: APPL Stock
+  m_EditorClassIdentifier: 
+  Name: APPL Stock
+  stackable: 1
+  description: A tech company created Apple product.
+  itemType: 3
+  icon: {fileID: 21300000, guid: 244f756045d64c3408e685df5936e763, type: 3}
+  onAction: {fileID: 0}
+  onTileMapAction: {fileID: 0}
+  onItemUsed: {fileID: 0}
+  itemIconHighlight: 0
+  itemPrefab: {fileID: 0}
+  price: 24
+  canBeSold: 1
+  stockSymbol: APPL
+  basePrice: 180
+  currentPrice: 180
+  previousDayPrice: 180
+  volatility: 0.08
+  isActive: 1
+  priceHistory:
+  - 131.4646
+  - 254.84985
+  - 251.1235
+  - 239.1828
+  - 265.1142
+  - 297.16614
+  - 278.97693
+  - 241.24484
+  - 231.79593
+  - 189.97165
+  - 180.38556
+  - 132.0976
+  - 99.80431
+  - 82.16186
+  - 68.93286
+  - 70.52067
+  - 88.374695
+  - 82.313515
+  - 63.804047
+  - 57.41121
+  - 45.65881
+  - 48.243084
+  - 51.952827
+  - 39.62614
+  - 32.470837
+  - 27.574589
+  - 32.361595
+  - 23.16333
+  - 23.102571
+  - 24.065622
+  maxHistoryLength: 30

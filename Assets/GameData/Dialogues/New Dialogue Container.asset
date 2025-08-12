@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: New Dialogue Container
   m_EditorClassIdentifier: 
   line:
-  - First Line dwadawdwada
-  - Second Line wdwadsaaw
-  - Third Line awdsawdsaw
+  - Hello! Welcome to Finance Journey in University
+  - I'm your friend, Angel!
+  - Hope you enjoy the game!
   actor: {fileID: 11400000, guid: 567c66661bb915146bc1c2a282a318f4, type: 2}

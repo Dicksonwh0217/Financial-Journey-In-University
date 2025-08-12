@@ -11660,7 +11660,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: roguelikeCity_magenta_550
+      name: TrayCarBot01
       rect:
         serializedVersion: 2
         x: 544
@@ -11718,48 +11718,6 @@ TextureImporter:
       bones: []
       spriteID: 80c70c194f8f05b44afbab3609599993
       internalID: -1514352584
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: roguelikeCity_magenta_553
-      rect:
-        serializedVersion: 2
-        x: 595
-        y: 221
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 454df1af85e3a8845bdae49f6b20acdf
-      internalID: 446325811
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: roguelikeCity_magenta_554
-      rect:
-        serializedVersion: 2
-        x: 612
-        y: 221
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4af36b6ace56d68489091bff095485d4
-      internalID: -2037439664
       vertices: []
       indices: 
       edges: []
@@ -12516,27 +12474,6 @@ TextureImporter:
       bones: []
       spriteID: e07ca3c49e1a1c44f98371e2e8b3d8ac
       internalID: -1810079790
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: roguelikeCity_magenta_591
-      rect:
-        serializedVersion: 2
-        x: 612
-        y: 204
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 23857f8fa9ca98d40bec968e88c04409
-      internalID: -1913923736
       vertices: []
       indices: 
       edges: []
@@ -21865,6 +21802,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: TrayCarTop01
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 221
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b868928378771bb449892861452759fa
+      internalID: 759344792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -21888,6 +21846,8 @@ TextureImporter:
       StoneRoad Right: -1525142024
       StoneRoad Right Bottom: -1573969292
       StoneRoad Right Top: 1051414600
+      TrayCarBot01: -776110027
+      TrayCarTop01: 759344792
       grass bottom: 2092181370
       grass bottom border: 1513751106
       grass bottom left: 1539102622
@@ -22425,7 +22385,6 @@ TextureImporter:
       roguelikeCity_magenta_547: 1798711538
       roguelikeCity_magenta_548: 204061753
       roguelikeCity_magenta_549: 391399618
-      roguelikeCity_magenta_550: -776110027
       roguelikeCity_magenta_551: -1759459361
       roguelikeCity_magenta_552: -1514352584
       roguelikeCity_magenta_553: 446325811

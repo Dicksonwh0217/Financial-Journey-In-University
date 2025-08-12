@@ -1,0 +1,237 @@
+fileFormatVersion: 2
+guid: 02e3e42f899d66d4796994fa96a8eb33
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8078634230174752381
+    second: dungeons_demo_0
+  - first:
+      213: -2150349263560530713
+    second: dungeons_demo_1
+  - first:
+      213: 1505174430636420462
+    second: dungeons_demo_2
+  - first:
+      213: -84922331002586686
+    second: dungeons_demo_3
+  - first:
+      213: -5811274623382839753
+    second: dungeons_demo_4
+  - first:
+      213: -1267513302180571766
+    second: dungeons_demo_5
+  - first:
+      213: -3130999968923375529
+    second: dungeons_demo_6
+  - first:
+      213: 8232585463606827342
+    second: dungeons_demo_7
+  - first:
+      213: 4566013314395942668
+    second: dungeons_demo_8
+  - first:
+      213: -822870061260410517
+    second: dungeons_demo_9
+  - first:
+      213: 7697172527387183079
+    second: dungeons_demo_10
+  - first:
+      213: 3150185488650022958
+    second: dungeons_demo_11
+  - first:
+      213: -2840936803366341298
+    second: dungeons_demo_12
+  - first:
+      213: -4281476079116351356
+    second: dungeons_demo_13
+  - first:
+      213: -6841589139379815541
+    second: dungeons_demo_14
+  - first:
+      213: -3952695712452859503
+    second: dungeons_demo_15
+  - first:
+      213: 4972471427851947486
+    second: dungeons_demo_16
+  - first:
+      213: -1447909552963039020
+    second: dungeons_demo_17
+  - first:
+      213: -704479158872252524
+    second: dungeons_demo_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: dungeons_demo_9
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 20
+        width: 32
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b61f44ef9049494f0800000000000000
+      internalID: -822870061260410517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dungeons_demo_12
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 49
+        width: 42
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e45f30e7707f298d0800000000000000
+      internalID: -2840936803366341298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: c313b607718be3545858e4facf276d97
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      dungeons_demo_0: -8078634230174752381
+      dungeons_demo_1: -2150349263560530713
+      dungeons_demo_10: 7697172527387183079
+      dungeons_demo_11: 3150185488650022958
+      dungeons_demo_12: -2840936803366341298
+      dungeons_demo_13: -4281476079116351356
+      dungeons_demo_14: -6841589139379815541
+      dungeons_demo_15: -3952695712452859503
+      dungeons_demo_16: 4972471427851947486
+      dungeons_demo_17: -1447909552963039020
+      dungeons_demo_18: -704479158872252524
+      dungeons_demo_2: 1505174430636420462
+      dungeons_demo_3: -84922331002586686
+      dungeons_demo_4: -5811274623382839753
+      dungeons_demo_5: -1267513302180571766
+      dungeons_demo_6: -3130999968923375529
+      dungeons_demo_7: 8232585463606827342
+      dungeons_demo_8: 4566013314395942668
+      dungeons_demo_9: -822870061260410517
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

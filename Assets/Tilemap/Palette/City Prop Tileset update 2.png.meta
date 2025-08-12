@@ -3260,13 +3260,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: City Prop Tileset update 2_150
+      name: VendingMachineFront02
       rect:
         serializedVersion: 2
         x: 0
-        y: 288
-        width: 16
-        height: 16
+        y: 256
+        width: 32
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3276,69 +3276,6 @@ TextureImporter:
       bones: []
       spriteID: a0ee66393d4c87846a8225008427d18d
       internalID: 1521862455
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_151
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 288
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d6ef2c1c02d8ff14ab13831e21115d76
-      internalID: 1424392689
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_152
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 288
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 83eedd87dea3f5240908e5c9159e341e
-      internalID: 714113276
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_153
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 288
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 433d99ab861a3604e8586798b670c266
-      internalID: 634817
       vertices: []
       indices: 
       edges: []
@@ -3885,90 +3822,6 @@ TextureImporter:
       bones: []
       spriteID: 48a2145bbc7f48d4e85f2d54c982e481
       internalID: 1850615109
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_180
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 272
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3a25c4fef86ddf44b94726708ea43b41
-      internalID: -1797196545
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_181
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 272
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bc246acfa1fb842479046f84fafba1e5
-      internalID: 133736353
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_182
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 272
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 74d55c2e8d7e6394992e5e3508df9641
-      internalID: 77944934
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_183
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 272
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6f294e88fb4a04448a2ccc1d9fafb242
-      internalID: -378533416
       vertices: []
       indices: 
       edges: []
@@ -4557,90 +4410,6 @@ TextureImporter:
       bones: []
       spriteID: b9e55d51d98cf044f99fa649b2cf1cb4
       internalID: 1384752682
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_212
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 256
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 57204045b74bf4e43a636286f9a948a3
-      internalID: 2033471922
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_213
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 256
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 961dac7582f9e184f8861e1ccac71225
-      internalID: 315094898
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_214
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 256
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d2a7447764a73224aabd246364e80841
-      internalID: -1561274989
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_215
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 256
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 689e4df958103f444bc8e859bdb55650
-      internalID: 1941098980
       vertices: []
       indices: 
       edges: []
@@ -5271,27 +5040,6 @@ TextureImporter:
       bones: []
       spriteID: 8f3349fa64dec9245a656c0867c2b7e7
       internalID: -1123180431
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_246
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 240
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bcf6d413d23171243b4eb238bdfdc5bc
-      internalID: 1880291438
       vertices: []
       indices: 
       edges: []
@@ -5948,27 +5696,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: City Prop Tileset update 2_278
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 224
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9612bed33bd0fe948934f285cc314d6d
-      internalID: 1838516978
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: City Prop Tileset update 2_279
       rect:
         serializedVersion: 2
@@ -6620,13 +6347,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: City Prop Tileset update 2_310
+      name: vendingMachineFaceRight01
       rect:
         serializedVersion: 2
         x: 32
         y: 208
         width: 16
-        height: 16
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -7292,48 +7019,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: City Prop Tileset update 2_342
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 192
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cf89682e562c4b2478dcfab4c81b7e0a
-      internalID: -885635866
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_343
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 192
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: eda4b48efd369904b9e9e0024eacda4a
-      internalID: 1610497698
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: City Prop Tileset update 2_344
       rect:
         serializedVersion: 2
@@ -7922,48 +7607,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: City Prop Tileset update 2_372
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 176
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1e65ec5df4661ca4c8588594110c13f8
-      internalID: 2079757359
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_373
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 176
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c12cfd3630c11184c96f36f85331c06d
-      internalID: -1476292602
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: City Prop Tileset update 2_374
       rect:
         serializedVersion: 2
@@ -8531,34 +8174,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: City Prop Tileset update 2_401
+      name: vendingMachineBack01
       rect:
         serializedVersion: 2
         x: 32
         y: 160
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 862685a5352a9c6439d8999fd0b1823f
-      internalID: -363788335
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_402
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 160
-        width: 16
-        height: 16
+        width: 32
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -10652,13 +10274,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: City Prop Tileset update 2_502
+      name: CafeCounter
       rect:
         serializedVersion: 2
         x: 160
-        y: 112
-        width: 16
-        height: 16
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -10673,76 +10295,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: City Prop Tileset update 2_503
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 112
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 50f3d8d6c21856848b28d1a768e07f92
-      internalID: -1420375685
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_504
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 112
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6fd98f4cac3bebb47a0154157cf06c45
-      internalID: -1688060704
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_505
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 112
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5f77006b98837eb43b30869609e83d4c
-      internalID: 2077073087
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_506
+      name: convenienceStore
       rect:
         serializedVersion: 2
         x: 224
-        y: 112
-        width: 16
-        height: 16
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -10752,69 +10311,6 @@ TextureImporter:
       bones: []
       spriteID: b3ba1125aa6e1304fa24c48a5b5eff41
       internalID: -1369515949
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_507
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 112
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b414a92cca72c144d8b1ab54a7beca02
-      internalID: -1327035272
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_508
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 112
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 935bfe8635dba30468647a54f33fd893
-      internalID: 288071911
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_509
-      rect:
-        serializedVersion: 2
-        x: 272
-        y: 112
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e0f4089c757e6604e98902b08fa06cc0
-      internalID: 427693999
       vertices: []
       indices: 
       edges: []
@@ -11240,174 +10736,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: City Prop Tileset update 2_530
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 96
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5cb689dcc93868644bf2d09c8af36222
-      internalID: -984113983
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_531
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 96
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e1a27ac6eef72dc4a9990c1bc564e4c3
-      internalID: 1737455862
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_532
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 96
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2b921184821d27744a3ce82a8217beda
-      internalID: -872447826
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_533
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 96
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a1d455b3b5c59134c9aa649ef54eccd6
-      internalID: -1330140534
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_534
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 96
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7da1b74f93fe24a4aab4e32d0ff9b654
-      internalID: 5916016
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_535
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 96
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c9f457eb375d73048b65127b327b5e53
-      internalID: -416185204
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_536
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 96
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5397598b8bebb144999edcb71d30eec3
-      internalID: -1715286483
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_537
-      rect:
-        serializedVersion: 2
-        x: 272
-        y: 96
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f54e891084cbbf846a0ce9e04143f360
-      internalID: -1150789711
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: City Prop Tileset update 2_538
       rect:
         serializedVersion: 2
@@ -11828,174 +11156,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: City Prop Tileset update 2_558
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 845c548cf034bf0418ea29719e5af69e
-      internalID: 271887835
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_559
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 375a199f3078a0443a495e4180f2b4aa
-      internalID: -385122509
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_560
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 83fa91e2583e66d45bb903ed4933d406
-      internalID: -188707448
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_561
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bc521e2d01dbe04479c07829581a9e2d
-      internalID: 2067470833
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_562
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 94bcafc9306e201419bb5dfe971fdbcc
-      internalID: -1907913830
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_563
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6c73e592b6fbc6c42be1cd1423573b28
-      internalID: -1159111355
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_564
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2e1c94e4afec66e4bba425c86c325108
-      internalID: 847054777
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_565
-      rect:
-        serializedVersion: 2
-        x: 272
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9e7176ca7cac66b488a36c7943d9c730
-      internalID: 410441038
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: City Prop Tileset update 2_566
       rect:
         serializedVersion: 2
@@ -12411,174 +11571,6 @@ TextureImporter:
       bones: []
       spriteID: 5d4e0bcc6dc6382408071721f0ece515
       internalID: 169102480
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_586
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d466c567fd625ac4ca3a8921bfaed06a
-      internalID: -1939360111
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_587
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8f288d6466f314d44990e0c396a671d0
-      internalID: -1184506461
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_588
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2bf01890bafdeb14ead6d5e2cea92a49
-      internalID: 928954955
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_589
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b029160994c6d0f4680d9aea7b40c3d8
-      internalID: 61055967
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_590
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 07bbf552dda75ed46a922333cedcf57d
-      internalID: -893704049
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_591
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 777be6c0f3b10504ebb5e3c80af70ac7
-      internalID: -1140978318
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_592
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cbef161e0fd429445afdf78706a3a54a
-      internalID: 660529717
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: City Prop Tileset update 2_593
-      rect:
-        serializedVersion: 2
-        x: 272
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 75c3676b4ed17134ea8bab9f21df00b4
-      internalID: 624989339
       vertices: []
       indices: 
       edges: []
@@ -14946,6 +13938,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      CafeCounter: 1840737463
       City Prop Tileset update 2_0: 538754837
       City Prop Tileset update 2_1: 504211664
       City Prop Tileset update 2_10: -740223662
@@ -15004,7 +13997,6 @@ TextureImporter:
       City Prop Tileset update 2_148: 247575517
       City Prop Tileset update 2_149: 336532266
       City Prop Tileset update 2_15: 865464119
-      City Prop Tileset update 2_150: 1521862455
       City Prop Tileset update 2_151: 1424392689
       City Prop Tileset update 2_152: 714113276
       City Prop Tileset update 2_153: 634817
@@ -15182,7 +14174,6 @@ TextureImporter:
       City Prop Tileset update 2_308: -1824207434
       City Prop Tileset update 2_309: 225511580
       City Prop Tileset update 2_31: 1251234351
-      City Prop Tileset update 2_310: 963064880
       City Prop Tileset update 2_311: -1690250051
       City Prop Tileset update 2_312: 723550548
       City Prop Tileset update 2_313: -1314082211
@@ -15284,7 +14275,6 @@ TextureImporter:
       City Prop Tileset update 2_40: 112143564
       City Prop Tileset update 2_400: -179236295
       City Prop Tileset update 2_401: -363788335
-      City Prop Tileset update 2_402: -22043885
       City Prop Tileset update 2_403: -932855391
       City Prop Tileset update 2_404: -1894423051
       City Prop Tileset update 2_405: -653454291
@@ -15395,11 +14385,9 @@ TextureImporter:
       City Prop Tileset update 2_50: 1866121294
       City Prop Tileset update 2_500: -1845538821
       City Prop Tileset update 2_501: -1933500772
-      City Prop Tileset update 2_502: 1840737463
       City Prop Tileset update 2_503: -1420375685
       City Prop Tileset update 2_504: -1688060704
       City Prop Tileset update 2_505: 2077073087
-      City Prop Tileset update 2_506: -1369515949
       City Prop Tileset update 2_507: -1327035272
       City Prop Tileset update 2_508: 288071911
       City Prop Tileset update 2_509: 427693999
@@ -15652,6 +14640,10 @@ TextureImporter:
       City Prop Tileset update 2_97: 1416069627
       City Prop Tileset update 2_98: -672907992
       City Prop Tileset update 2_99: -2127659184
+      VendingMachineFront02: 1521862455
+      convenienceStore: -1369515949
+      vendingMachineBack01: -22043885
+      vendingMachineFaceRight01: 963064880
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
