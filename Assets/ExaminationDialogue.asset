@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14274edaec87c9b4792250ef2d50303f, type: 3}
+  m_Name: ExaminationDialogue
+  m_EditorClassIdentifier: 
+  characterName: Tutor
+  portrait: {fileID: 21300000, guid: be4545fa996fabd4292fd4a4b852ca42, type: 3}
+  questionText: Hi student, how can I help you?
+  actionSetId: 2
+  options:
+  - optionText: Take the test
+    optionType: 0
+    hasRequirements: 0
+    requirements: []
+    closesDialogue: 1
+  - optionText: Nothing...
+    optionType: 0
+    hasRequirements: 0
+    requirements: []
+    closesDialogue: 1

@@ -28,8 +28,8 @@ public class DayTime : MonoBehaviour
     
     float time;
     [SerializeField] float timeScale = 60f;
-    [SerializeField] float startAtTime = 28800f; // in seconds
-    [SerializeField] float morningTime = 28800f;
+    [SerializeField] float startAtTime = 21600f; // in seconds
+    [SerializeField] float morningTime = 21600f;
     
     DayOfWeek dayOfWeek;
     

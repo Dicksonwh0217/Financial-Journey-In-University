@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab15a90077b0bf144aba76ae42650a5e, type: 3}
-  m_Name: New Actor
+  m_Name: Mr.Tan
   m_EditorClassIdentifier: 
-  Name: Angel
-  portrait: {fileID: 21300000, guid: a439f22cab84853469ce49971f173533, type: 3}
+  Name: Mr.Tan
+  portrait: {fileID: 21300000, guid: be4545fa996fabd4292fd4a4b852ca42, type: 3}

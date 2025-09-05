@@ -76,7 +76,6 @@ public class AchievementItem : MonoBehaviour
         {
             button.onClick.RemoveAllListeners();
             button.onClick.AddListener(() => {
-                Debug.Log($"Clicked achievement: {achievement.title}");
                 manager.SelectAchievement(achievement, this);
             });
             button.interactable = true;
@@ -136,7 +135,6 @@ public class AchievementItem : MonoBehaviour
                         if (button == null || img != button.image)
                         {
                             achievementImage = img;
-                            Debug.Log($"Found achievement image in children: {img.name}");
                             break;
                         }
                     }
@@ -167,7 +165,6 @@ public class AchievementItem : MonoBehaviour
                     titleText = textTransform.GetComponent<TextMeshProUGUI>();
                     if (titleText != null)
                     {
-                        Debug.Log($"Found title text at: {path}");
                         break;
                     }
                 }
@@ -179,7 +176,6 @@ public class AchievementItem : MonoBehaviour
                 titleText = GetComponentInChildren<TextMeshProUGUI>();
                 if (titleText != null)
                 {
-                    Debug.Log($"Found title text in children: {titleText.name}");
                 }
             }
         }
@@ -190,7 +186,6 @@ public class AchievementItem : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"Title Text component not found on {gameObject.name}");
         }
 
         // Auto-find completed badge if not assigned
@@ -205,18 +200,10 @@ public class AchievementItem : MonoBehaviour
                 if (badgeTransform != null)
                 {
                     completedBadge = badgeTransform.gameObject;
-                    Debug.Log($"Found completed badge at: {path}");
                     break;
                 }
             }
         }
-
-        // Log final validation results
-        Debug.Log($"Component validation for {gameObject.name}: " +
-                 $"Button={(button != null && button.enabled)}, " +
-                 $"Image={(achievementImage != null && achievementImage.enabled)}, " +
-                 $"Text={(titleText != null && titleText.enabled)}, " +
-                 $"Badge={(completedBadge != null)}");
     }
 
     private void UpdateUI()
@@ -311,13 +298,5 @@ public class AchievementItem : MonoBehaviour
         // Force validate and enable components before refreshing
         ForceValidateAndEnableComponents();
         UpdateUI();
-    }
-
-    // DEBUG METHOD: Call this to check component states
-    [ContextMenu("Force Enable All Components")]
-    public void ForceEnableAllComponentsMenu()
-    {
-        ForceValidateAndEnableComponents();
-        Debug.Log($"Forced enable all components on {gameObject.name}");
     }
 }

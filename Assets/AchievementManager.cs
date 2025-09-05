@@ -10,6 +10,9 @@ public class AchievementManager : MonoBehaviour
     public GameObject achievementItemPrefab;
     public AchievementDetailPanel detailPanel;
 
+    [Header("Popup System")]
+    public AchievementPopUpPanel achievementPopup; // Reference to the popup panel (can be inactive)
+
     [Header("Achievement Data")]
     public List<Achievement> achievements = new List<Achievement>();
 
@@ -19,20 +22,17 @@ public class AchievementManager : MonoBehaviour
 
     private void Start()
     {
-        InitializeAchievements();
-        PopulateAchievementList();
-    }
-
-    private void InitializeAchievements()
-    {
-        // Example achievements - replace with your actual data
-        if (achievements.Count == 0)
+        // Find popup even if it's inactive
+        if (achievementPopup == null)
         {
-            achievements.Add(new Achievement(1, "First Steps", "Complete your first level", null));
-            achievements.Add(new Achievement(2, "Collector", "Collect 100 items", null));
-            achievements.Add(new Achievement(3, "Speed Runner", "Complete a level in under 30 seconds", null));
-            achievements.Add(new Achievement(4, "Explorer", "Discover all hidden areas", null));
+            achievementPopup = FindFirstObjectByType<AchievementPopUpPanel>(FindObjectsInactive.Include);
+            if (achievementPopup != null)
+            {
+            }
         }
+
+        PopulateAchievementList();
+        LoadAchievements(); // Load saved achievement states
     }
 
     private void PopulateAchievementList()
@@ -67,7 +67,6 @@ public class AchievementManager : MonoBehaviour
             }
             else
             {
-                Debug.LogError($"AchievementItem component not found on instantiated prefab: {itemObj.name}");
             }
         }
 
@@ -75,7 +74,7 @@ public class AchievementManager : MonoBehaviour
         StartCoroutine(RefreshLayoutNextFrame());
     }
 
-    // NEW METHOD: Force enable components that commonly get disabled
+    // Force enable components that commonly get disabled
     private void ForceEnableComponents(GameObject itemObj)
     {
         // Enable Button component
@@ -107,8 +106,6 @@ public class AchievementManager : MonoBehaviour
         {
             achievementItem.enabled = true;
         }
-
-        Debug.Log($"Force enabled components on {itemObj.name}");
     }
 
     private System.Collections.IEnumerator RefreshLayoutNextFrame()
@@ -148,12 +145,6 @@ public class AchievementManager : MonoBehaviour
         detailPanel.ShowAchievementDetails(achievement);
     }
 
-    private void HighlightSelectedItem(Achievement selectedAchievement)
-    {
-        // This method is now handled by SelectAchievement above
-        // Keep it for backwards compatibility if needed
-    }
-
     // Methods for unlocking/completing achievements
     public void UnlockAchievement(int achievementId)
     {
@@ -162,6 +153,12 @@ public class AchievementManager : MonoBehaviour
         {
             achievement.isUnlocked = true;
             RefreshAchievementDisplay(achievement);
+
+            // Show popup for newly unlocked achievement
+            ShowAchievementPopup(achievement);
+
+            // Save the achievement state
+            SaveAchievements();
         }
     }
 
@@ -170,8 +167,113 @@ public class AchievementManager : MonoBehaviour
         Achievement achievement = achievements.Find(a => a.id == achievementId);
         if (achievement != null)
         {
+            bool wasAlreadyCompleted = achievement.isCompleted;
+
             achievement.isUnlocked = true;
             achievement.isCompleted = true;
+
+            RefreshAchievementDisplay(achievement);
+
+            // Show popup only if it wasn't already completed
+            if (!wasAlreadyCompleted)
+            {
+                ShowAchievementPopup(achievement);
+            }
+            else
+            {
+            }
+
+            // Update detail panel if this achievement is currently selected
+            if (currentSelectedAchievement == achievement)
+            {
+                detailPanel.ShowAchievementDetails(achievement);
+            }
+
+            // Save the achievement state
+            SaveAchievements();
+        }
+        else
+        {
+        }
+    }
+
+    // Show achievement popup - works with inactive popup
+    private void ShowAchievementPopup(Achievement achievement)
+    {
+        // Try direct reference first
+        if (achievementPopup != null)
+        {
+            achievementPopup.ShowAchievementPopup(achievement);
+            return;
+        }
+
+        // Try to find popup in scene (including inactive objects)
+        achievementPopup = FindFirstObjectByType<AchievementPopUpPanel>(FindObjectsInactive.Include);
+        if (achievementPopup != null)
+        {
+            achievementPopup.ShowAchievementPopup(achievement);
+        }
+        else
+        {
+            AchievementPopUpPanel.ShowAchievement(achievement);
+        }
+    }
+
+    private void RefreshAchievementDisplay(Achievement achievement)
+    {
+        AchievementItem item = null;
+
+        foreach (AchievementItem achievementItem in achievementItems)
+        {
+            if (achievementItem != null && achievementItem.name.Contains($"Achievement_{achievement.id}"))
+            {
+                item = achievementItem;
+                break;
+            }
+        }
+
+        // If not found by name, try finding by checking the achievement data
+        if (item == null)
+        {
+            foreach (AchievementItem achievementItem in achievementItems)
+            {
+                if (achievementItem != null)
+                {
+                    // Use the index as a fallback
+                    int itemIndex = achievementItems.IndexOf(achievementItem);
+                    if (itemIndex < achievements.Count && achievements[itemIndex].id == achievement.id)
+                    {
+                        item = achievementItem;
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (item != null)
+        {
+            // Force enable components before refreshing display
+            ForceEnableComponents(item.gameObject);
+
+            // Refresh the display
+            item.RefreshDisplay();
+        }
+        else
+        {
+        }
+    }
+
+    // Add method to reset achievements
+    public void ResetAchievement(int achievementId)
+    {
+        Achievement achievement = achievements.Find(a => a.id == achievementId);
+        if (achievement != null)
+        {
+            achievement.isUnlocked = true;
+            achievement.isCompleted = false;
+
+            Debug.Log($"[ACHIEVEMENT] Reset: {achievement.title} (ID: {achievementId})");
+
             RefreshAchievementDisplay(achievement);
 
             // Update detail panel if this achievement is currently selected
@@ -179,67 +281,68 @@ public class AchievementManager : MonoBehaviour
             {
                 detailPanel.ShowAchievementDetails(achievement);
             }
+
+            // Also clear from PlayerPrefs
+            PlayerPrefs.DeleteKey($"Achievement_{achievement.id}_Unlocked");
+            PlayerPrefs.DeleteKey($"Achievement_{achievement.id}_Completed");
+            PlayerPrefs.Save();
         }
     }
 
-    private void RefreshAchievementDisplay(Achievement achievement)
-    {
-        AchievementItem item = achievementItems.Find(i => i.name.Contains(achievement.id.ToString()));
-        if (item != null)
-        {
-            // Force enable components before refreshing display
-            ForceEnableComponents(item.gameObject);
-            item.RefreshDisplay();
-        }
-    }
-
-    // Save/Load methods (optional)
+    // Save/Load methods
     public void SaveAchievements()
     {
-        // Implement save logic using PlayerPrefs or file system
         for (int i = 0; i < achievements.Count; i++)
         {
             Achievement achievement = achievements[i];
-            PlayerPrefs.SetInt($"Achievement_{achievement.id}_Unlocked", achievement.isUnlocked ? 1 : 0);
-            PlayerPrefs.SetInt($"Achievement_{achievement.id}_Completed", achievement.isCompleted ? 1 : 0);
         }
         PlayerPrefs.Save();
     }
 
     public void LoadAchievements()
     {
-        // Implement load logic
         for (int i = 0; i < achievements.Count; i++)
         {
             Achievement achievement = achievements[i];
-            achievement.isUnlocked = PlayerPrefs.GetInt($"Achievement_{achievement.id}_Unlocked", 0) == 1;
-            achievement.isCompleted = PlayerPrefs.GetInt($"Achievement_{achievement.id}_Completed", 0) == 1;
+        }
+
+        // Refresh all displays after loading
+        foreach (Achievement achievement in achievements)
+        {
+            RefreshAchievementDisplay(achievement);
         }
     }
 
-    // DEBUG METHOD: Call this to check component states
-    [ContextMenu("Debug Component States")]
-    public void DebugComponentStates()
+    // Public method to check if an achievement is unlocked
+    public bool IsAchievementUnlocked(int achievementId)
     {
-        Debug.Log("=== DEBUGGING COMPONENT STATES ===");
-        foreach (AchievementItem item in achievementItems)
+        Achievement achievement = achievements.Find(a => a.id == achievementId);
+        return achievement != null && achievement.isUnlocked;
+    }
+
+    public bool IsAchievementCompleted(int achievementId)
+    {
+        Achievement achievement = achievements.Find(a => a.id == achievementId);
+        return achievement != null && achievement.isCompleted;
+    }
+
+    // Public methods for other scripts to call
+    public void CompleteAchievementWithPopup(int achievementId)
+    {
+        CompleteAchievement(achievementId);
+    }
+
+    public void UnlockAchievementWithPopup(int achievementId)
+    {
+        UnlockAchievement(achievementId);
+    }
+
+    [ContextMenu("Force Refresh All Achievement Displays")]
+    public void ForceRefreshAllDisplays()
+    {
+        foreach (Achievement achievement in achievements)
         {
-            if (item != null)
-            {
-                Button btn = item.GetComponent<Button>();
-                Image[] images = item.GetComponentsInChildren<Image>();
-
-                Debug.Log($"Item: {item.name}");
-                Debug.Log($"  AchievementItem enabled: {item.enabled}");
-                Debug.Log($"  Button enabled: {(btn != null ? btn.enabled.ToString() : "NULL")}");
-                Debug.Log($"  Images count: {images.Length}");
-
-                for (int i = 0; i < images.Length; i++)
-                {
-                    Debug.Log($"    Image {i} ({images[i].name}) enabled: {images[i].enabled}");
-                }
-            }
+            RefreshAchievementDisplay(achievement);
         }
-        Debug.Log("=== END DEBUG ===");
     }
 }

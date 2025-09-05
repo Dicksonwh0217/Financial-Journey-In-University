@@ -24,8 +24,8 @@ MonoBehaviour:
   itemPrefab: {fileID: 0}
   price: 3
   canBeSold: 0
-  consumable: 0
+  consumable: 1
   hungerRestoreAmount: 0
   thirstRestoreAmount: 10
-  healthRestoreAmount: 3
+  healthRestoreAmount: 2
   happinessRestoreAmount: 6

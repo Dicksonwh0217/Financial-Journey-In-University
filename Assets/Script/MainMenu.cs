@@ -16,8 +16,6 @@ public class MainMenu : MonoBehaviour
     public TMPro.TMP_InputField nameInputField;
     [SerializeField] private BodyPartsManager bodyPartsManager;
 
-    AsyncOperation operation;
-
     private void Start()
     {
         SetGenderAny();

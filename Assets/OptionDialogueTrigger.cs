@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OptionDialogueTrigger : MonoBehaviour
+public class OptionDialogueTrigger : Interactable
 {
     [Header("Dialogue Data")]
     public OptionDialogueDefinition dialogueData;
@@ -30,5 +30,10 @@ public class OptionDialogueTrigger : MonoBehaviour
             dialogueSystem.Initialize(dialogueData);
             hasBeenTriggered = true;
         }
+    }
+
+    public override void Interact(Character character)
+    {
+        TriggerDialogue();
     }
 }

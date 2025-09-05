@@ -20,7 +20,7 @@ MonoBehaviour:
   onAction: {fileID: 11400000, guid: a3074470c62734c458fd00287b65025b, type: 2}
   onTileMapAction: {fileID: 0}
   onItemUsed: {fileID: 0}
-  itemIconHighlight: 1
+  itemIconHighlight: 0
   itemPrefab: {fileID: 0}
   price: 0
   canBeSold: 0

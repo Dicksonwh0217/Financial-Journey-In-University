@@ -242,7 +242,6 @@ public class TimetableManager : MonoBehaviour
             Debug.LogError("❌ ClassSlotPrefab is not assigned and could not be restored!");
         else
         {
-            Debug.Log("✅ ClassSlotPrefab assigned");
             ValidatePrefabStructure();
         }
     }
@@ -264,11 +263,9 @@ public class TimetableManager : MonoBehaviour
                 TextMeshProUGUI textComponent = child.GetComponent<TextMeshProUGUI>();
                 if (textComponent == null)
                 {
-                    Debug.LogError($"❌ Child '{childName}' missing TextMeshProUGUI component!");
                 }
                 else
                 {
-                    Debug.Log($"✅ {childName} found with TextMeshProUGUI");
                 }
             }
         }
@@ -670,8 +667,6 @@ public class TimetableManager : MonoBehaviour
 
     public void RecordAttendanceButtonPressed()
     {
-        Debug.Log("=== RecordAttendanceButtonPressed() Called ===");
-
         // Check if all required systems are available
         if (DayTime.Instance == null)
         {
@@ -685,14 +680,10 @@ public class TimetableManager : MonoBehaviour
             return;
         }
 
-        Debug.Log("✅ DayTime.Instance and ScreenTint are available");
-
         // Get current time and day
         DayOfWeek currentDay = DayTime.Instance.GetDayOfWeek();
         float currentTime = DayTime.Instance.Hours;
         int currentDayNumber = DayTime.Instance.days;
-
-        Debug.Log($"Current Day: {currentDay}, Current Time: {currentTime:F2}, Day Number: {currentDayNumber}");
 
         // Find the current active class that the student should attend
         Class currentClass = GetCurrentAttendableClass(currentDay, currentTime);
@@ -700,7 +691,6 @@ public class TimetableManager : MonoBehaviour
         if (currentClass == null)
         {
             List<Class> todaysClasses = GetTodaysClasses();
-            Debug.Log($"No attendable class found. Today's classes ({todaysClasses.Count} total):");
             foreach (var cls in todaysClasses)
             {
                 Debug.Log($"  - {cls.className}: {cls.GetTimeString()} (Start: {cls.startTime:F2}, End: {cls.endTime:F2})");
@@ -708,48 +698,37 @@ public class TimetableManager : MonoBehaviour
             return;
         }
 
-        Debug.Log($"✅ Found current attendable class: {currentClass.className} ({currentClass.GetTimeString()})");
-
         // Start the attendance recording coroutine with visual effects
         StartCoroutine(RecordAttendanceWithEffects(currentClass));
     }
 
     private IEnumerator RecordAttendanceWithEffects(Class currentClass)
     {
-        Debug.Log($"Starting attendance recording with effects for {currentClass.className}");
 
         // Store the original time scale
         float originalTimeScale = DayTime.Instance != null ? GetTimeScale() : 60f;
 
         // Step 1: Tint the screen
         GameSceneManager.instance.screenTint.Tint();
-        Debug.Log("Screen tinting started");
 
         // Wait for tint to complete
         float tintDuration = 1f / GameSceneManager.instance.screenTint.speed + 0.1f;
         yield return new WaitForSeconds(tintDuration);
-        Debug.Log("Screen tint completed");
 
         // Step 2: Stop time counting (pause the day/night cycle)
         if (DayTime.Instance != null)
         {
             SetTimeScale(0f);
-            Debug.Log("Time counting stopped");
         }
-
-        // Step 3: Record the attendance
-        Debug.Log($"Recording attendance for {currentClass.className}");
 
         // Try using AutomaticAttendanceTracker if available
         if (AutomaticAttendanceTracker.Instance != null)
         {
             bool canAttend = AutomaticAttendanceTracker.Instance.CanAttendClass(currentClass.className);
-            Debug.Log($"Can attend {currentClass.className}: {canAttend}");
 
             if (canAttend)
             {
                 AutomaticAttendanceTracker.Instance.MarkAttendanceManually(currentClass.className);
-                Debug.Log("✅ Attendance recorded via AutomaticAttendanceTracker");
             }
             else
             {
@@ -759,19 +738,16 @@ public class TimetableManager : MonoBehaviour
         else
         {
             RecordAttendance(currentClass.className, true);
-            Debug.Log("✅ Attendance recorded via TimetableManager");
         }
 
         // Step 4: Jump time to end of class
         float timeToJump = currentClass.endTime - DayTime.Instance.Hours;
         if (timeToJump > 0)
         {
-            Debug.Log($"Jumping time forward by {timeToJump:F2} hours (to {currentClass.endTime:F2})");
             DayTime.Instance.SkipTime(hours: timeToJump);
         }
         else
         {
-            Debug.Log("Class has already ended or is ending, no time jump needed");
         }
 
         // Small delay to let the time update process
@@ -781,16 +757,13 @@ public class TimetableManager : MonoBehaviour
         if (DayTime.Instance != null)
         {
             SetTimeScale(originalTimeScale);
-            Debug.Log($"Time counting restored with scale: {originalTimeScale}");
         }
 
         // Step 6: Untint the screen
         GameSceneManager.instance.screenTint.UnTint();
-        Debug.Log("Screen untinting started");
 
         // Wait for untint to complete
         yield return new WaitForSeconds(tintDuration);
-        Debug.Log("✅ Attendance recording with effects completed");
 
         // Refresh the UI to show updated information
         RefreshContent();
@@ -812,30 +785,23 @@ public class TimetableManager : MonoBehaviour
 
     private Class GetCurrentAttendableClass(DayOfWeek currentDay, float currentTime)
     {
-        Debug.Log($"Looking for attendable class on {currentDay} at {currentTime:F2}");
 
         foreach (var classItem in weeklyClasses)
         {
             if (classItem.dayOfWeek == currentDay)
             {
-                Debug.Log($"Checking class: {classItem.className} (Start: {classItem.startTime:F2}, End: {classItem.endTime:F2})");
-
                 // Allow attendance for first 50% of class duration
                 float attendanceEndTime = classItem.startTime + (classItem.endTime - classItem.startTime) * 0.5f;
                 bool isInTimeRange = currentTime >= classItem.startTime &&
                                     currentTime <= attendanceEndTime;
 
-                Debug.Log($"  - Time range check: {currentTime:F2} >= {classItem.startTime:F2} && {currentTime:F2} <= {attendanceEndTime:F2} = {isInTimeRange}");
 
                 if (isInTimeRange)
                 {
-                    Debug.Log($"✅ Found attendable class: {classItem.className}");
                     return classItem;
                 }
             }
         }
-
-        Debug.Log("❌ No attendable class found");
         return null;
     }
 }

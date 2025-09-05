@@ -140,28 +140,6 @@ public class Transition : MonoBehaviour
         }
     }
 
-    private IEnumerator HandleCameraWarpAlternative(CinemachineBrain brain)
-    {
-        if (brain == null) yield break;
-
-        bool originalEnabled = brain.enabled;
-        brain.enabled = false;
-
-        yield return null;
-
-        if (Camera.main != null)
-        {
-            Camera.main.transform.position = new Vector3(
-                targetPosition.x,
-                targetPosition.y,
-                Camera.main.transform.position.z
-            );
-        }
-
-        yield return null;
-        brain.enabled = originalEnabled;
-    }
-
     public void HandleSceneTransition()
     {
         // Add null check for GameSceneManager

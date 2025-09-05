@@ -18,4 +18,5 @@ public class GameManager : MonoBehaviour
     public ItemStockPanel stockStorePanel;
     public OptionDialogueSystem optionDialogueSystem;
     public DialogueActionHandler dialogueActionHandler;
+    public AchievementManager achievementManager;
 }
