@@ -7524,16 +7524,16 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI books & more_389
+      name: CheckBox_Unchecked
       rect:
         serializedVersion: 2
-        x: 656
-        y: 288
-        width: 16
-        height: 16
+        x: 659
+        y: 291
+        width: 10
+        height: 10
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 2, y: 2, z: 2, w: 2}
       customData: 
       outline: []
       physicsShape: []
@@ -9372,16 +9372,16 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI books & more_473
+      name: Checkbox_Checked
       rect:
         serializedVersion: 2
-        x: 656
-        y: 256
-        width: 16
-        height: 16
+        x: 658
+        y: 258
+        width: 12
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 3, y: 3, z: 3, w: 3}
       customData: 
       outline: []
       physicsShape: []
@@ -18519,6 +18519,8 @@ TextureImporter:
       BookUI: -2069788228
       CharacterBackButton: -1468221570
       CharacterNextButton: -1955965434
+      CheckBox_Unchecked: 1210490205
+      Checkbox_Checked: 1140324472
       CloseButton02: -685426748
       CompletedUI: 1646081501
       LocationLabel: -1989799035
@@ -18851,7 +18853,6 @@ TextureImporter:
       UI books & more_386: 1512576101
       UI books & more_387: -967894341
       UI books & more_388: 1783098865
-      UI books & more_389: 1210490205
       UI books & more_390: -153240079
       UI books & more_391: -1264337004
       UI books & more_392: -944298111
@@ -18944,7 +18945,6 @@ TextureImporter:
       UI books & more_470: 2122236212
       UI books & more_471: -1967468322
       UI books & more_472: 1129582800
-      UI books & more_473: 1140324472
       UI books & more_474: -1868103055
       UI books & more_475: 1667021232
       UI books & more_476: 362870663

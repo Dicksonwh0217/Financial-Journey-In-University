@@ -4,6 +4,53 @@ using UnityEngine.Events;
 
 public class DialogueActionHandler : MonoBehaviour
 {
+    #region Quiz Control System
+    [Header("Quiz Control")]
+    [SerializeField] private bool quizHasStarted = false;
+
+    /// <summary>
+    /// Called by QuizManager when the quiz starts
+    /// </summary>
+    public void OnQuizStarted()
+    {
+        quizHasStarted = true;
+        DisableAllOptionDialogueTriggers();
+        Debug.Log("Quiz started - All option dialogue triggers disabled");
+    }
+
+    /// <summary>
+    /// Disables all OptionDialogueTrigger components in the current scene
+    /// </summary>
+    private void DisableAllOptionDialogueTriggers()
+    {
+        OptionDialogueTrigger[] triggers = FindObjectsOfType<OptionDialogueTrigger>();
+        foreach (OptionDialogueTrigger trigger in triggers)
+        {
+            trigger.canTriggerMultipleTimes = false;
+            trigger.hasBeenTriggered = true;
+        }
+        Debug.Log($"Disabled {triggers.Length} option dialogue triggers");
+    }
+
+    /// <summary>
+    /// Check if quiz has started (useful for other scripts)
+    /// </summary>
+    public bool HasQuizStarted()
+    {
+        return quizHasStarted;
+    }
+
+    /// <summary>
+    /// Manually reset quiz state (for testing or game restart)
+    /// </summary>
+    public void ResetQuizState()
+    {
+        quizHasStarted = false;
+        Debug.Log("Quiz state reset");
+    }
+    #endregion
+
+    #region Dialogue Action System
     [Header("Global Dialogue Actions")]
     [SerializeField] private List<DialogueActionSet> dialogueActionSets = new List<DialogueActionSet>();
 
@@ -62,6 +109,7 @@ public class DialogueActionHandler : MonoBehaviour
             BuildActionLookup();
         }
     }
+    #endregion
 }
 
 [System.Serializable]
@@ -81,7 +129,6 @@ public class DialogueActionSet
         {
             optionActions.Add(new UnityEvent());
         }
-
         while (optionActions.Count > targetCount)
         {
             optionActions.RemoveAt(optionActions.Count - 1);

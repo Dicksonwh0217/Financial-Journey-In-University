@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14274edaec87c9b4792250ef2d50303f, type: 3}
-  m_Name: ExaminationDialogue
+  m_Name: ExaminationOptionDialogue
   m_EditorClassIdentifier: 
   characterName: Tutor
   portrait: {fileID: 21300000, guid: be4545fa996fabd4292fd4a4b852ca42, type: 3}
@@ -19,8 +19,15 @@ MonoBehaviour:
   options:
   - optionText: Take the test
     optionType: 0
-    hasRequirements: 0
-    requirements: []
+    hasRequirements: 1
+    requirements:
+    - requirementType: 3
+      requirementKey: 
+      requiredValue: 0
+      dayValue: 45
+      minDay: 0
+      maxDay: 0
+      allowedDays: 
     closesDialogue: 1
   - optionText: Nothing...
     optionType: 0
