@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5db4b5e95e72de4b9b2fa6a95122692, type: 3}
+  m_Name: Midterm 1
+  m_EditorClassIdentifier: 
+  _info: Which of the following is the most important first step in creating a personal
+    budget?
+  _answers:
+  - _info: Investing in stocks
+    _isCorrect: 0
+  - _info: Tracking your income and expenses
+    _isCorrect: 1
+  - _info: Buying luxury items
+    _isCorrect: 0
+  - _info: Borrowing money
+    _isCorrect: 0
+  _examinationType: 0
+  _subject: General
+  _useTimer: 1
+  _timer: 60
+  _answerType: 1
+  _addScore: 2
+  _difficulty: 1

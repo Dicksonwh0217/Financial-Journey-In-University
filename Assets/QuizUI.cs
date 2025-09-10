@@ -164,8 +164,8 @@ public class QuizUI : MonoBehaviour
                 uIElements.TotalScoreText.gameObject.SetActive(true);
 
                 // Calculate the new total score (previous + current session)
-                var newTotalScore = events.StartupTotalScore + events.CurrentFinalScore;
-                uIElements.TotalScoreText.text = "Total Score: " + newTotalScore;
+                int maxScore = events.CurrentExamMaxScore;
+                uIElements.TotalScoreText.text = $"Score: {events.CurrentFinalScore} / {maxScore}";
                 break;
         }
     }

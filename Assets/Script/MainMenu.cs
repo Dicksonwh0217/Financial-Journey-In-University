@@ -38,8 +38,25 @@ public class MainMenu : MonoBehaviour
     {
         CaptureCharacterCustomization();
 
+        ResetExaminationProgress();
+
         SceneManager.LoadScene(nameNewGameStartScene, LoadSceneMode.Single);
         SceneManager.LoadScene(nameEssentialScene, LoadSceneMode.Additive);
+    }
+
+    private void ResetExaminationProgress()
+    {
+        // Reset all exam-related PlayerPrefs
+        PlayerPrefs.DeleteKey(QuizUtility.MidtermScorePrefKey);
+        PlayerPrefs.DeleteKey(QuizUtility.FinalScorePrefKey);
+        PlayerPrefs.DeleteKey(QuizUtility.MidtermCompletedPrefKey);
+        PlayerPrefs.DeleteKey(QuizUtility.FinalCompletedPrefKey);
+        PlayerPrefs.DeleteKey(QuizUtility.TotalGradePrefKey);
+
+        // Force save to ensure reset is applied immediately
+        PlayerPrefs.Save();
+
+        Debug.Log("Examination progress reset for new game!");
     }
 
     private void CaptureCharacterCustomization()

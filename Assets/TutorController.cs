@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutorController : MonoBehaviour
 {
@@ -10,9 +11,15 @@ public class TutorController : MonoBehaviour
     [SerializeField] private float startTime = 8f; // 8:00 AM
     [SerializeField] private float endTime = 10f; // 10:00 AM
 
+    [Header("Performance Settings")]
+    [SerializeField] private float tutorSearchInterval = 2f; // How often to search for tutor if missing (in seconds)
+
     private DayTime timeController;
     private GameObject tutorObject;
     private bool tutorCurrentlyActive = false;
+    private bool hasSearchedThisScene = false; // Track if we've already searched in current scene
+    private float lastSearchTime = 0f; // When we last searched for tutor
+    private int lastSceneBuildIndex = -1; // Track scene changes
 
     private void Start()
     {
@@ -26,30 +33,72 @@ public class TutorController : MonoBehaviour
             Debug.LogError("TutorController: Could not find DayTime controller through GameManager!");
         }
 
+        // Subscribe to scene change events
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
         // Find the tutor object in the current scene
+        FindTutorObject();
+        lastSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
+    }
+
+    private void OnDestroy()
+    {
+        // Unsubscribe from scene change events to prevent memory leaks
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Reset search flag when new scene loads
+        hasSearchedThisScene = false;
+        tutorObject = null; // Clear reference since we're in a new scene
+        lastSceneBuildIndex = scene.buildIndex;
+
+        // Start coroutine to search after a small delay (ensures scene is fully loaded)
+        StartCoroutine(DelayedTutorSearch());
+    }
+
+    private IEnumerator DelayedTutorSearch()
+    {
+        // Wait a frame to ensure scene is fully loaded
+        yield return null;
         FindTutorObject();
     }
 
     private void OnEnable()
     {
-        // When this script becomes active (scene loads), find the tutor object
-        FindTutorObject();
+        // Check if we're in a different scene than last time
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        if (currentScene != lastSceneBuildIndex)
+        {
+            hasSearchedThisScene = false;
+            tutorObject = null;
+            lastSceneBuildIndex = currentScene;
+        }
+
+        // When this script becomes active, find the tutor object if we haven't already
+        if (!hasSearchedThisScene || tutorObject == null)
+        {
+            FindTutorObject();
+        }
     }
 
     private void FindTutorObject()
     {
         // Try to find the tutor object by name in the current scene
         tutorObject = GameObject.Find(tutorObjectName);
+        hasSearchedThisScene = true; // Mark that we've searched in this scene
+        lastSearchTime = Time.time; // Record when we searched
 
         if (tutorObject != null)
         {
             // Ensure tutor starts with correct state based on current time
             CheckAndSetInitialTutorState();
-            Debug.Log($"TutorController: Found tutor object '{tutorObjectName}' in scene");
+            Debug.Log($"TutorController: Found tutor object '{tutorObjectName}' in scene '{SceneManager.GetActiveScene().name}'");
         }
         else
         {
-            Debug.Log($"TutorController: Tutor object '{tutorObjectName}' not found in current scene");
+            Debug.Log($"TutorController: Tutor object '{tutorObjectName}' not found in current scene '{SceneManager.GetActiveScene().name}'");
         }
     }
 
@@ -73,14 +122,18 @@ public class TutorController : MonoBehaviour
     {
         if (timeController == null) return;
 
-        // If tutor object is null, try to find it (in case scene just loaded)
-        if (tutorObject == null)
+        // Only search for tutor if we don't have a reference AND enough time has passed since last search
+        if (tutorObject == null && (Time.time - lastSearchTime) >= tutorSearchInterval)
         {
             FindTutorObject();
-            return;
+            return; // Exit early if we just searched, let next frame handle schedule check
         }
 
-        CheckTutorSchedule();
+        // Only check schedule if we have a tutor object
+        if (tutorObject != null)
+        {
+            CheckTutorSchedule();
+        }
     }
 
     private void CheckTutorSchedule()
@@ -122,7 +175,10 @@ public class TutorController : MonoBehaviour
     // Public methods for manual control (useful for testing)
     public void ManualActivateTutor()
     {
-        if (tutorObject == null) FindTutorObject();
+        if (tutorObject == null)
+        {
+            FindTutorObject();
+        }
 
         if (tutorObject != null)
         {
@@ -133,7 +189,10 @@ public class TutorController : MonoBehaviour
 
     public void ManualDeactivateTutor()
     {
-        if (tutorObject == null) FindTutorObject();
+        if (tutorObject == null)
+        {
+            FindTutorObject();
+        }
 
         if (tutorObject != null)
         {
@@ -145,6 +204,15 @@ public class TutorController : MonoBehaviour
     // Force refresh - useful when transitioning to a scene with the tutor
     public void RefreshTutorReference()
     {
+        hasSearchedThisScene = false; // Allow new search
+        FindTutorObject();
+    }
+
+    // Force immediate search (bypasses interval)
+    public void ForceSearchTutor()
+    {
+        lastSearchTime = 0f; // Reset search time to allow immediate search
+        hasSearchedThisScene = false;
         FindTutorObject();
     }
 
@@ -185,5 +253,29 @@ public class TutorController : MonoBehaviour
     {
         get { return tutorObjectName; }
         set { tutorObjectName = value; }
+    }
+
+    public float TutorSearchInterval
+    {
+        get { return tutorSearchInterval; }
+        set { tutorSearchInterval = value; }
+    }
+
+    // Utility method to check current status
+    public bool HasTutorReference => tutorObject != null;
+    public bool IsTutorCurrentlyActive => tutorCurrentlyActive;
+
+    // Debug info
+    [System.Diagnostics.Conditional("UNITY_EDITOR")]
+    private void OnDrawGizmosSelected()
+    {
+        // Show debug info in scene view when selected
+        if (Application.isPlaying)
+        {
+            UnityEditor.Handles.Label(transform.position,
+                $"Tutor Found: {HasTutorReference}\n" +
+                $"Should Be Active: {IsTutorScheduledActive}\n" +
+                $"Currently Active: {IsTutorCurrentlyActive}");
+        }
     }
 }

@@ -1,5 +1,11 @@
 using UnityEngine;
 
+public enum ExaminationType
+{
+    Midterm,
+    Final
+}
+
 [CreateAssetMenu(fileName = "QuizEvents", menuName = "Quiz/new QuizEvents")]
 public class QuizEvents : ScriptableObject
 {
@@ -15,8 +21,18 @@ public class QuizEvents : ScriptableObject
     public delegate void ScoreUpdatedCallback();
     public ScoreUpdatedCallback ScoreUpdated;
 
+    public delegate void ExamCompletedCallback(ExaminationType examType, int score, int maxScore);
+    public ExamCompletedCallback ExamCompleted;
+
     [HideInInspector]
     public int CurrentFinalScore;
+
     [HideInInspector]
     public int StartupTotalScore;
+
+    [HideInInspector]
+    public ExaminationType CurrentExamType;
+
+    [HideInInspector]
+    public int CurrentExamMaxScore;
 }

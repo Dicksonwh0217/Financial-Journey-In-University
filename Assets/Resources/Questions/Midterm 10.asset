@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5db4b5e95e72de4b9b2fa6a95122692, type: 3}
+  m_Name: Midterm 10
+  m_EditorClassIdentifier: 
+  _info: Which of the following best explains why budgeting and saving are important
+    before investing?
+  _answers:
+  - _info: It ensures you have enough money to cover daily needs and emergencies
+    _isCorrect: 1
+  - _info: It guarantees investment profits
+    _isCorrect: 0
+  - _info: It allows you to buy luxury items immediately
+    _isCorrect: 0
+  - _info: It avoids paying taxes
+    _isCorrect: 0
+  _examinationType: 0
+  _subject: General
+  _useTimer: 1
+  _timer: 60
+  _answerType: 1
+  _addScore: 2
+  _difficulty: 1

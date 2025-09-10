@@ -6,7 +6,6 @@ public struct Answer
 {
     [SerializeField] private string _info;
     public string Info { get { return _info; } }
-
     [SerializeField] private bool _isCorrect;
     public bool isCorrect { get { return _isCorrect; } }
 }
@@ -14,27 +13,36 @@ public struct Answer
 [CreateAssetMenu(fileName = "Question", menuName = "Quiz/new Question")]
 public class Question : ScriptableObject
 {
-    public enum AnswerType { Multi, Single}
+    public enum AnswerType { Multi, Single }
 
     [SerializeField] private string _info = string.Empty;
     public string Info { get { return _info; } }
 
     [SerializeField] Answer[] _answers = null;
-    public Answer[] Answers { get {  return _answers; } }
+    public Answer[] Answers { get { return _answers; } }
 
-    //Parameters
+    [Header("Examination Settings")]
+    [SerializeField] private ExaminationType _examinationType = ExaminationType.Midterm;
+    public ExaminationType ExaminationType { get { return _examinationType; } }
 
+    [SerializeField] private string _subject = "General";
+    public string Subject { get { return _subject; } }
+
+    [Header("Question Parameters")]
     [SerializeField] private bool _useTimer = false;
     public bool UseTimer { get { return _useTimer; } }
 
     [SerializeField] private int _timer = 0;
-    public int Timer { get { return _timer;} }
+    public int Timer { get { return _timer; } }
 
     [SerializeField] private AnswerType _answerType = AnswerType.Multi;
     public AnswerType GetAnswerType { get { return _answerType; } }
 
     [SerializeField] private int _addScore = 10;
-    public int AddScore { get { return _addScore;} }
+    public int AddScore { get { return _addScore; } }
+
+    [SerializeField] private int _difficulty = 1;
+    public int Difficulty { get { return _difficulty; } }
 
     public List<int> GetCorrectAnswers()
     {

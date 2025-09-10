@@ -284,4 +284,103 @@ public class BillPanel : MonoBehaviour
     {
         RefreshBillDisplay();
     }
+
+    public bool HasExpiredBills()
+    {
+        foreach (Bill bill in activeBills)
+        {
+            if (bill != null && bill.IsExpired() && !bill.IsPaid)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Get count of expired bills
+    public int GetExpiredBillCount()
+    {
+        int expiredCount = 0;
+        foreach (Bill bill in activeBills)
+        {
+            if (bill != null && bill.IsExpired() && !bill.IsPaid)
+            {
+                expiredCount++;
+            }
+        }
+        return expiredCount;
+    }
+
+    // Get total amount of expired bills
+    public float GetTotalExpiredAmount()
+    {
+        float totalAmount = 0f;
+        foreach (Bill bill in activeBills)
+        {
+            if (bill != null && bill.IsExpired() && !bill.IsPaid)
+            {
+                totalAmount += bill.Amount;
+            }
+        }
+        return totalAmount;
+    }
+
+    // Method to check if player has any critical expired bills (for ending conditions)
+    public bool HasCriticalExpiredBills(int gracePeriodDays = 7)
+    {
+        int currentDay = DayTime.Instance != null ? DayTime.Instance.days : 0;
+
+        foreach (Bill bill in activeBills)
+        {
+            if (bill != null && !bill.IsPaid)
+            {
+                int expirationDay = bill.CreationDay + bill.ExpireDays;
+                int daysPastExpiration = currentDay - expirationDay;
+
+                // If bill expired more than grace period days ago, it's critical
+                if (daysPastExpiration > gracePeriodDays)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    // Debug method to log bill status
+    [ContextMenu("Debug Bill Status")]
+    public void DebugBillStatus()
+    {
+        Debug.Log($"=== BILL STATUS DEBUG ===");
+        Debug.Log($"Active Bills: {activeBills.Count}");
+        Debug.Log($"Unpaid Bills: {GetUnpaidBillCount()}");
+        Debug.Log($"Expired Bills: {GetExpiredBillCount()}");
+        Debug.Log($"Has Critical Expired Bills: {HasCriticalExpiredBills()}");
+        Debug.Log($"Total Unpaid Amount: ${GetTotalUnpaidAmount():F2}");
+        Debug.Log($"Total Expired Amount: ${GetTotalExpiredAmount():F2}");
+
+        foreach (Bill bill in activeBills)
+        {
+            if (bill != null)
+            {
+                string status = bill.IsPaid ? "PAID" : (bill.IsExpired() ? "EXPIRED" : "ACTIVE");
+                Debug.Log($"- {bill.BillName}: ${bill.Amount:F2} [{status}]");
+            }
+        }
+    }
+
+    // Method to reset all bills (useful for testing)
+    [ContextMenu("Clear All Bills")]
+    public void ClearAllBills()
+    {
+        for (int i = activeBills.Count - 1; i >= 0; i--)
+        {
+            if (activeBills[i] != null && activeBills[i].gameObject != null)
+            {
+                Destroy(activeBills[i].gameObject);
+            }
+        }
+        activeBills.Clear();
+        Debug.Log("All bills cleared");
+    }
 }
