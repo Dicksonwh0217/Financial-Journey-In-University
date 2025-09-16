@@ -1065,7 +1065,7 @@ TextureImporter:
         height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 9, y: 12, z: 9, w: 2}
+      border: {x: 9, y: 12, z: 9, w: 3}
       customData: 
       outline: []
       physicsShape: []
@@ -7194,7 +7194,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI books & more_379
+      name: 1
       rect:
         serializedVersion: 2
         x: 496
@@ -7260,7 +7260,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI books & more_382
+      name: Tutorial
       rect:
         serializedVersion: 2
         x: 544
@@ -18141,6 +18141,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      1: -1343199544
       BackButton: 1389731176
       BookUI: -2069788228
       CharacterBackButton: -1468221570
@@ -18158,6 +18159,7 @@ TextureImporter:
       SelectorUI: -2023476912
       TextInputUI: -1026282665
       TimetableContainerUI: 87407790
+      Tutorial: 28546631
       UI books & more_0: 1708103941
       UI books & more_1: 1824703897
       UI books & more_10: -1223572246
@@ -18467,11 +18469,9 @@ TextureImporter:
       UI books & more_376: 1467426374
       UI books & more_377: 1919461041
       UI books & more_378: 1722579809
-      UI books & more_379: -1343199544
       UI books & more_38: 1504546216
       UI books & more_380: -1152257951
       UI books & more_381: -83063323
-      UI books & more_382: 28546631
       UI books & more_383: 1061152736
       UI books & more_384: 1451449520
       UI books & more_385: 494301859

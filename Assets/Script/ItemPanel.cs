@@ -14,7 +14,7 @@ public class ItemPanel : MonoBehaviour
     public List<InventoryButton> buttons;
     [SerializeField] protected ItemDetailPanel itemDetailPanel;
 
-    private void Start()
+    public void Start()
     {
         Init();
     }
@@ -68,9 +68,20 @@ public class ItemPanel : MonoBehaviour
 
     private void SetIndex()
     {
-        for (int i = 0; i < inventory.slots.Count && i < buttons.Count; i++)
+        if (inventory == null || buttons == null)
         {
-            buttons[i].SetIndex(i);
+            return;
+        }
+
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            if (buttons[i] != null)
+            {
+                buttons[i].SetIndex(i);
+            }
+            else
+            {
+            }
         }
     }
 
@@ -80,8 +91,19 @@ public class ItemPanel : MonoBehaviour
         {
             return;
         }
+
+        if (buttons == null || buttons.Count == 0)
+        {
+            return;
+        }
+
         for (int i = 0; i < inventory.slots.Count && i < buttons.Count; i++)
         {
+            if (buttons[i] == null)
+            {
+                continue;
+            }
+
             if (inventory.slots[i].item == null)
             {
                 buttons[i].Clean();

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,13 @@ public class ItemDetailPanel : MonoBehaviour
     [SerializeField] TMPro.TextMeshProUGUI itemDescription;
     [SerializeField] TMPro.TextMeshProUGUI itemPrice;
     [SerializeField] TMPro.TextMeshProUGUI itemType;
+
+    [Header("Effect Panel")]
+    [SerializeField] GameObject effectPanel; // The effect panel container
+    [SerializeField] TMPro.TextMeshProUGUI hungerRestoreText;
+    [SerializeField] TMPro.TextMeshProUGUI thirstRestoreText;
+    [SerializeField] TMPro.TextMeshProUGUI healthRestoreText;
+    [SerializeField] TMPro.TextMeshProUGUI happinessRestoreText;
 
     [Header("Positioning Settings")]
     [SerializeField] float offsetDistance = 15f; // Distance from cursor
@@ -50,11 +58,57 @@ public class ItemDetailPanel : MonoBehaviour
         if (itemType != null)
             itemType.text = item.itemType.ToString();
 
+        // Handle effect panel visibility and content
+        UpdateEffectPanel(item);
+
         // Force layout rebuild to get accurate size
         Canvas.ForceUpdateCanvases();
 
         // Position the panel near the mouse
         PositionPanel(mousePosition);
+    }
+
+    private void UpdateEffectPanel(Item item)
+    {
+        // Show effect panel only for Food and Drink items
+        bool shouldShowEffectPanel = (item.itemType == Item.ItemType.Food || item.itemType == Item.ItemType.Drink);
+
+        if (effectPanel != null)
+        {
+            effectPanel.SetActive(shouldShowEffectPanel);
+        }
+
+        if (shouldShowEffectPanel)
+        {
+            // Update effect text values
+            if (hungerRestoreText != null)
+            {
+                hungerRestoreText.text = $"+{item.HungerRestoreAmount}";
+                // Hide the text if the value is 0
+                hungerRestoreText.gameObject.SetActive(item.HungerRestoreAmount >= 0);
+            }
+
+            if (thirstRestoreText != null)
+            {
+                thirstRestoreText.text = $"+{item.ThirstRestoreAmount}";
+                // Hide the text if the value is 0
+                thirstRestoreText.gameObject.SetActive(item.ThirstRestoreAmount >= 0);
+            }
+
+            if (healthRestoreText != null)
+            {
+                healthRestoreText.text = $"+{item.HealthRestoreAmount}";
+                // Hide the text if the value is 0
+                healthRestoreText.gameObject.SetActive(item.HealthRestoreAmount >= 0);
+            }
+
+            if (happinessRestoreText != null)
+            {
+                happinessRestoreText.text = $"+{item.HappinessRestoreAmount}";
+                // Hide the text if the value is 0
+                happinessRestoreText.gameObject.SetActive(item.HappinessRestoreAmount >= 0);
+            }
+        }
     }
 
     private void PositionPanel(Vector3 mousePosition)

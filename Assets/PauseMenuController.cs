@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 [DefaultExecutionOrder(-100)]
 public class PauseMenuController : MonoBehaviour
@@ -13,6 +15,11 @@ public class PauseMenuController : MonoBehaviour
     [SerializeField] AudioClip pauseCloseSFX;    // Sound when pause menu closes
     [Range(0f, 1f)]
     [SerializeField] float sfxVolume = 1f;       // Volume for sound effects
+
+    [Header("Main Menu Settings")]
+    [SerializeField] string mainMenuSceneName = "MainMenu"; // Name of your main menu scene
+    [SerializeField] bool enableDebugLogs = true;           // Enable debug logging
+    [SerializeField] ScreenTint screenTint;                 // Optional screen tint effect
 
     private bool isPaused = false;
     private bool wasMusicPlayingBeforePause = false;
@@ -114,6 +121,56 @@ public class PauseMenuController : MonoBehaviour
         Debug.Log("Pause Menu Closed");
     }
 
+    // Function to call when quit button is pressed - returns to main menu
+    public void QuitToMainMenu()
+    {
+        if (enableDebugLogs)
+            Debug.Log("Quitting to main menu...");
+
+        // Resume time scale before transitioning
+        Time.timeScale = 1f;
+
+        // Start the return to main menu coroutine
+        StartCoroutine(ReturnToMainMenu());
+    }
+
+    private IEnumerator ReturnToMainMenu()
+    {
+        if (screenTint != null)
+        {
+            yield return StartCoroutine(screenTint.TintCoroutine());
+        }
+
+        CleanupDontDestroyOnLoadObjects();
+
+        // Load main menu scene
+        SceneManager.LoadScene(mainMenuSceneName);
+    }
+
+    private void CleanupDontDestroyOnLoadObjects()
+    {
+        if (enableDebugLogs)
+            Debug.Log("Cleaning up DontDestroyOnLoad objects before returning to main menu");
+
+        // Get all GameObjects in DontDestroyOnLoad scene
+        GameObject[] allObjects = FindObjectsOfType<GameObject>();
+        int destroyedCount = 0;
+
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj.scene.name == "DontDestroyOnLoad" && obj.transform.parent == null)
+            {
+                if (enableDebugLogs)
+                    Debug.Log($"Destroying DontDestroyOnLoad object: {obj.name}");
+                Destroy(obj);
+                destroyedCount++;
+            }
+        }
+
+        if (enableDebugLogs)
+            Debug.Log($"Destroyed {destroyedCount} DontDestroyOnLoad objects");
+    }
+
     private void PlaySFX(AudioClip clip)
     {
         if (sfxAudioSource != null && clip != null)
@@ -173,7 +230,7 @@ public class PauseMenuController : MonoBehaviour
     {
         if (!showDebugButtons) return;
 
-        GUILayout.BeginArea(new Rect(Screen.width - 200, 10, 180, 100));
+        GUILayout.BeginArea(new Rect(Screen.width - 200, 10, 180, 150));
         GUILayout.Label("Pause Menu Debug");
         GUILayout.Label($"Is Paused: {isPaused}");
 
@@ -183,6 +240,8 @@ public class PauseMenuController : MonoBehaviour
             PlaySFX(pauseOpenSFX);
         if (GUILayout.Button("Test Close SFX"))
             PlaySFX(pauseCloseSFX);
+        if (GUILayout.Button("Quit to Main Menu"))
+            QuitToMainMenu();
 
         GUILayout.EndArea();
     }

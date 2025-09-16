@@ -21,18 +21,18 @@ public class DayTime : MonoBehaviour
     const float secondsInDay = 86400f;
     const float phaseLength = 900f; // 15 minutes chunk of time
     const float phasesInDay = 96f; //seconsInDay divided by phaseLength
-    
+
     [SerializeField] Color nightLightColor;
     [SerializeField] AnimationCurve nightTimeCurve;
     [SerializeField] Color dayLightColor = Color.white;
-    
+
     float time;
     [SerializeField] float timeScale = 60f;
     [SerializeField] float startAtTime = 21600f; // in seconds
     [SerializeField] float morningTime = 21600f;
-    
+
     DayOfWeek dayOfWeek;
-    
+
     [SerializeField] TMPro.TextMeshProUGUI text;
     [SerializeField] Text dayOfTheWeekText;
     [SerializeField] TMPro.TextMeshProUGUI dayCountText;
@@ -49,10 +49,10 @@ public class DayTime : MonoBehaviour
 
     public int days;
     List<TimeAgent> agents;
-    
+
     // Singleton pattern
     public static DayTime Instance { get; private set; }
-    
+
     private void Awake()
     {
         // Singleton setup
@@ -66,10 +66,10 @@ public class DayTime : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        
+
         agents = new List<TimeAgent>();
     }
-    
+
     private void Start()
     {
         time = startAtTime;
@@ -129,12 +129,12 @@ public class DayTime : MonoBehaviour
     {
         agents.Add(timeAgent);
     }
-    
+
     public void Unsubsribe(TimeAgent timeAgent)
     {
         agents.Remove(timeAgent);
     }
-    
+
     public float Hours
     {
         get
@@ -142,7 +142,7 @@ public class DayTime : MonoBehaviour
             return time / 3600f;
         }
     }
-    
+
     public float Minutes
     {
         get
@@ -150,39 +150,39 @@ public class DayTime : MonoBehaviour
             return time % 3600f / 60f;
         }
     }
-    
+
     private void Update()
     {
         time += Time.deltaTime * timeScale;
         TimeValueCalculation();
         DayLight();
         UpdateTimeSprite();
-        
+
         if (time > secondsInDay)
         {
             NextDay();
         }
-        
+
         TimeAgents();
-        
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             SkipTime(hours: 4);
         }
     }
-    
+
     int oldPhase = -1;
-    
+
     private void TimeAgents()
     {
-        if(oldPhase == -1)
+        if (oldPhase == -1)
         {
             oldPhase = CalculatePhase();
         }
-        
+
         int currentPhase = CalculatePhase();
-        
-        while(oldPhase < currentPhase)
+
+        while (oldPhase < currentPhase)
         {
             oldPhase += 1;
             for (int i = 0; i < agents.Count; i++)
@@ -191,31 +191,31 @@ public class DayTime : MonoBehaviour
             }
         }
     }
-    
+
     private int CalculatePhase()
     {
         return (int)(time / phaseLength) + (int)(days * phasesInDay);
     }
-    
+
     private void TimeValueCalculation()
     {
         int hh = (int)Hours;
         int mm = (int)Minutes;
         text.text = hh.ToString("00") + ":" + mm.ToString("00");
     }
-    
+
     private void DayLight()
     {
         float v = nightTimeCurve.Evaluate(Hours);
         Color c = Color.Lerp(dayLightColor, nightLightColor, v);
         globalLight.color = c;
     }
-    
+
     private void NextDay()
     {
         time -= secondsInDay;
         days += 1;
-        
+
         int dayNum = (int)dayOfWeek;
         dayNum += 1;
         if (dayNum >= 7)
@@ -223,11 +223,11 @@ public class DayTime : MonoBehaviour
             dayNum = 0;
         }
         dayOfWeek = (DayOfWeek)dayNum;
-        
+
         UpdateDayText();
         UpdateDayCountText();
     }
-    
+
     private void UpdateDayText()
     {
         string chineseDayText = "";
@@ -257,7 +257,7 @@ public class DayTime : MonoBehaviour
         }
         dayOfTheWeekText.text = chineseDayText;
     }
-    
+
     public void SkipTime(float seconds = 0, float minute = 0, float hours = 0)
     {
         float timeToSkip = seconds;
@@ -265,11 +265,11 @@ public class DayTime : MonoBehaviour
         timeToSkip += hours * 3600f;
         time += timeToSkip;
     }
-    
+
     public void SkipToMorning()
     {
         float secondsToSkip = 0f;
-        if(time > morningTime)
+        if (time > morningTime)
         {
             secondsToSkip += secondsInDay - time + morningTime;
         }
@@ -279,7 +279,7 @@ public class DayTime : MonoBehaviour
         }
         SkipTime(secondsToSkip);
     }
-    
+
     // Public methods for accessing time data from other scenes
     public string GetTimeString()
     {
@@ -287,7 +287,7 @@ public class DayTime : MonoBehaviour
         int mm = (int)Minutes;
         return hh.ToString("00") + ":" + mm.ToString("00");
     }
-    
+
     public DayOfWeek GetDayOfWeek()
     {
         return dayOfWeek;
@@ -316,4 +316,78 @@ public class DayTime : MonoBehaviour
     {
         timeScale = scale;
     }
+
+    // INSPECTOR CALLABLE FUNCTIONS
+    [ContextMenu("Jump to 8:00 AM Today")]
+    public void JumpTo8AM()
+    {
+        // 8:00 AM = 8 hours = 28800 seconds
+        float targetTime = 8f * 3600f; // 28800 seconds
+        time = targetTime;
+
+        // Update all UI elements
+        TimeValueCalculation();
+        DayLight();
+        UpdateTimeSprite();
+
+        Debug.Log($"Jumped to 8:00 AM on Day {days + 1}");
+    }
+
+    [ContextMenu("Jump to Day 45, 8:00 AM")]
+    public void JumpToDay45_8AM()
+    {
+        // Set to day 44 (since days is 0-indexed, day 45 = days = 44)
+        days = 44;
+
+        // Set time to 8:00 AM (28800 seconds)
+        time = 8f * 3600f; // 28800 seconds
+
+        // Update day of week for day 45
+        // Assuming we start on Sunday (day 0), day 45 would be...
+        // Day 45 % 7 = day 3 (Wednesday)
+        dayOfWeek = (DayOfWeek)(days % 7);
+
+        // Update all UI elements and systems
+        UpdateDayText();
+        UpdateDayCountText();
+        TimeValueCalculation();
+        DayLight();
+        UpdateTimeSprite();
+
+        // Reset phase tracking for agents
+        oldPhase = CalculatePhase();
+
+        Debug.Log($"Jumped to Day 45, 8:00 AM ({dayOfWeek})");
+    }
+
+    [ContextMenu("Jump to Day 90, 12:00 PM")]
+    public void JumpToDay90_12PM()
+    {
+        // Set to day 89 (since days is 0-indexed, day 90 = days = 89)
+        days = 89;
+
+        // Set time to 12:00 PM (43200 seconds)
+        time = 12f * 3600f; // 43200 seconds
+
+        // Update day of week for day 90
+        // Day 90 % 7 = day 6 (Saturday)
+        dayOfWeek = (DayOfWeek)(days % 7);
+
+        // Update all UI elements and systems
+        UpdateDayText();
+        UpdateDayCountText();
+        TimeValueCalculation();
+        DayLight();
+        UpdateTimeSprite();
+
+        // Reset phase tracking for agents
+        oldPhase = CalculatePhase();
+
+        Debug.Log($"Jumped to Day 90, 12:00 PM ({dayOfWeek})");
+    }
+
+    // Alternative: Public methods that can be called from buttons or other scripts
+    public void CallJumpTo8AM() => JumpTo8AM();
+    public void CallJumpToDay45_8AM() => JumpToDay45_8AM();
+    public void CallJumpToDay90_12PM() => JumpToDay90_12PM();
 }

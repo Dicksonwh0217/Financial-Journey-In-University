@@ -1440,6 +1440,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 052c67ec057707e40bb335633e95c115, type: 2}
     - target: {fileID: 5471163774459341284, guid: 658ecc114b97faa41b6a24e3bc990f0d, type: 3}
+      propertyPath: hasPartTimeJob
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5471163774459341284, guid: 658ecc114b97faa41b6a24e3bc990f0d, type: 3}
+      propertyPath: allowPartTimeJob
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5471163774459341284, guid: 658ecc114b97faa41b6a24e3bc990f0d, type: 3}
       propertyPath: buyFromPlayerMultip
       value: 1
       objectReference: {fileID: 0}

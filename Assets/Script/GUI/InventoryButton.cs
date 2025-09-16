@@ -56,10 +56,10 @@ public class InventoryButton : MonoBehaviour, IPointerClickHandler, IPointerEnte
 
     public void OnPointerClick(PointerEventData eventData)
     {
+
         // Check if it's left click (0) or right click (1)
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            // Left click behavior
             itemPanel.OnLeftClick(myIndex);
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
