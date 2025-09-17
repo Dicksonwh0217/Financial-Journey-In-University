@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5db4b5e95e72de4b9b2fa6a95122692, type: 3}
+  m_Name: Final 17
+  m_EditorClassIdentifier: 
+  _info: Which of the following are characteristics of high-risk, high-return investments?
+    (Select all apply)
+  _answers:
+  - _info: Potential for significant profit
+    _isCorrect: 1
+  - _info: Potential for loss
+    _isCorrect: 1
+  - _info: Guaranteed returns
+    _isCorrect: 0
+  - _info: Requires research and monitoring
+    _isCorrect: 1
+  _examinationType: 1
+  _subject: General
+  _useTimer: 0
+  _timer: 80
+  _answerType: 0
+  _addScore: 6
+  _difficulty: 1

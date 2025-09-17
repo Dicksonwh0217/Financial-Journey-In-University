@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5db4b5e95e72de4b9b2fa6a95122692, type: 3}
+  m_Name: Final 2
+  m_EditorClassIdentifier: 
+  _info: Why is it important to track your monthly expenses?
+  _answers:
+  - _info: To know how much money you can borrow
+    _isCorrect: 0
+  - _info: To control spending and plan savings
+    _isCorrect: 1
+  - _info: To avoid paying taxes
+    _isCorrect: 0
+  - _info: To invest without risk
+    _isCorrect: 0
+  _examinationType: 1
+  _subject: General
+  _useTimer: 0
+  _timer: 60
+  _answerType: 1
+  _addScore: 2
+  _difficulty: 1

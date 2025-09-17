@@ -1,4 +1,4 @@
-// EndingManager.cs
+// EndingManager.cs - Fixed version
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +20,7 @@ public class EndingManager : MonoBehaviour
     [Header("Game Progress")]
     [SerializeField] private int currentDay = 1;
     [SerializeField] private int maxDays = 90;
+    [SerializeField] private float endingTriggerHour = 21f; // 9:00 PM
 
     [Header("Scene Management")]
     [SerializeField] private string mainMenuSceneName = "MainMenu";
@@ -29,9 +30,10 @@ public class EndingManager : MonoBehaviour
 
     [Header("Timing Settings")]
     [SerializeField] private float delayBeforeUntint = 0.5f;
-    [SerializeField] private float delayAfterUntint = 0.2f; // Reduced delay
+    [SerializeField] private float delayAfterUntint = 0.2f;
 
     private bool endingTriggered = false;
+    private bool day90EndingChecked = false; // NEW: Flag to prevent multiple checks
     private Dictionary<EndingType, EndingData> endingDataDict;
     private DayTime dayTimeSystem;
 
@@ -83,6 +85,32 @@ public class EndingManager : MonoBehaviour
         {
             CheckExaminationDeadlines();
         }
+
+        // NEW: Check for Day 90 ending at specific time
+        if (!endingTriggered && !day90EndingChecked)
+        {
+            CheckDay90EndingTime();
+        }
+    }
+
+    // NEW METHOD: Check if it's time to trigger Day 90 endings
+    private void CheckDay90EndingTime()
+    {
+        if (dayTimeSystem == null) return;
+
+        int currentDay = dayTimeSystem.days + 1;
+        float currentHour = dayTimeSystem.Hours;
+
+        // Check if we've reached Day 90 at 9:00 PM or later
+        if (currentDay >= maxDays && currentHour >= endingTriggerHour)
+        {
+            day90EndingChecked = true; // Mark as checked to prevent multiple triggers
+
+            if (enableDebugLogs)
+                Debug.Log($"Day 90 ending triggered at Day {currentDay}, Hour {currentHour:F2}");
+
+            Check90DayEndings();
+        }
     }
 
     public void IncrementDay()
@@ -91,15 +119,18 @@ public class EndingManager : MonoBehaviour
         if (enableDebugLogs)
             Debug.Log($"Day incremented to: {currentDay}");
 
-        if (currentDay >= maxDays && !endingTriggered)
-        {
-            Check90DayEndings();
-        }
+        // REMOVED: The automatic day 90 ending trigger from here
+        // Now it's handled by CheckDay90EndingTime() at the specific hour
     }
 
     public void SetCurrentDay(int day)
     {
         currentDay = day;
+        // Reset the day 90 check if we're setting the day manually
+        if (day < maxDays)
+        {
+            day90EndingChecked = false;
+        }
     }
 
     private void CheckForEndings()
@@ -419,6 +450,14 @@ public class EndingManager : MonoBehaviour
         return endingTriggered;
     }
 
+    // NEW: Method to manually trigger Day 90 endings (for testing)
+    [ContextMenu("Force Check 90-Day Endings")]
+    public void ForceCheck90DayEndings()
+    {
+        day90EndingChecked = false; // Reset flag
+        Check90DayEndings();
+    }
+
     // Debug methods for testing endings
     [ContextMenu("Test Starving Death")]
     public void TestStarvingDeath()
@@ -475,5 +514,9 @@ public class EndingManager : MonoBehaviour
         bool midtermCompleted = PlayerPrefs.GetInt(QuizUtility.MidtermCompletedPrefKey, 0) == 1;
         bool finalCompleted = PlayerPrefs.GetInt(QuizUtility.FinalCompletedPrefKey, 0) == 1;
         Debug.Log($"Midterm Completed: {midtermCompleted}, Final Completed: {finalCompleted}");
+
+        // NEW: Debug Day 90 ending status
+        Debug.Log($"Day 90 Ending Checked: {day90EndingChecked}");
+        Debug.Log($"Ending Triggered: {endingTriggered}");
     }
 }

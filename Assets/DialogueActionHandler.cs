@@ -14,22 +14,6 @@ public class DialogueActionHandler : MonoBehaviour
     public void OnQuizStarted()
     {
         quizHasStarted = true;
-        DisableAllOptionDialogueTriggers();
-        Debug.Log("Quiz started - All option dialogue triggers disabled");
-    }
-
-    /// <summary>
-    /// Disables all OptionDialogueTrigger components in the current scene
-    /// </summary>
-    private void DisableAllOptionDialogueTriggers()
-    {
-        OptionDialogueTrigger[] triggers = FindObjectsOfType<OptionDialogueTrigger>();
-        foreach (OptionDialogueTrigger trigger in triggers)
-        {
-            trigger.canTriggerMultipleTimes = false;
-            trigger.hasBeenTriggered = true;
-        }
-        Debug.Log($"Disabled {triggers.Length} option dialogue triggers");
     }
 
     /// <summary>

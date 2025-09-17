@@ -7964,7 +7964,7 @@ GameObject:
   - component: {fileID: 1669660204}
   - component: {fileID: 1669660205}
   m_Layer: 0
-  m_Name: Tutor
+  m_Name: MidtermTutor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

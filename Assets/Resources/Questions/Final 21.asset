@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5db4b5e95e72de4b9b2fa6a95122692, type: 3}
+  m_Name: Final 21
+  m_EditorClassIdentifier: 
+  _info: 'You invest $200 monthly in an index fund at varying prices. After 3 years,
+    your average cost per share is lower than the average market price. This demonstrates:'
+  _answers:
+  - _info: Dollar-Cost Averaging
+    _isCorrect: 1
+  - _info: Compounding effect
+    _isCorrect: 0
+  - _info: Budgeting failure
+    _isCorrect: 0
+  - _info: Fixed expenses
+    _isCorrect: 0
+  _examinationType: 1
+  _subject: General
+  _useTimer: 0
+  _timer: 60
+  _answerType: 1
+  _addScore: 2
+  _difficulty: 1

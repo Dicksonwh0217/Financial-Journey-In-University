@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class TutorController : MonoBehaviour
 {
     [Header("Tutor Settings")]
-    [SerializeField] private string tutorObjectName = "Tutor"; // Name to find the tutor GameObject
+    [SerializeField] private string tutorObjectName = "MidtermTutor"; // Name to find the tutor GameObject
     [SerializeField] private int targetDay = 45; // Day when tutor should appear
     [SerializeField] private float startTime = 8f; // 8:00 AM
     [SerializeField] private float endTime = 10f; // 10:00 AM
@@ -94,11 +94,6 @@ public class TutorController : MonoBehaviour
         {
             // Ensure tutor starts with correct state based on current time
             CheckAndSetInitialTutorState();
-            Debug.Log($"TutorController: Found tutor object '{tutorObjectName}' in scene '{SceneManager.GetActiveScene().name}'");
-        }
-        else
-        {
-            Debug.Log($"TutorController: Tutor object '{tutorObjectName}' not found in current scene '{SceneManager.GetActiveScene().name}'");
         }
     }
 
@@ -158,7 +153,6 @@ public class TutorController : MonoBehaviour
         {
             tutorObject.SetActive(true);
             tutorCurrentlyActive = true;
-            Debug.Log($"Tutor activated on day {timeController.days + 1} at {timeController.GetTimeString()}");
         }
     }
 
@@ -168,7 +162,6 @@ public class TutorController : MonoBehaviour
         {
             tutorObject.SetActive(false);
             tutorCurrentlyActive = false;
-            Debug.Log($"Tutor deactivated on day {timeController.days + 1} at {timeController.GetTimeString()}");
         }
     }
 
