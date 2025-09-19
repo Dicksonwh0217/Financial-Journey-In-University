@@ -108,10 +108,17 @@ public class QuizUI : MonoBehaviour
     {
         UpdateScoreUI();
         resStateParaHash = Animator.StringToHash("ScreenState");
+
+        // Initialize finish UI elements as hidden
+        HideFinishElements();
     }
 
     void UpdateQuestionUI(Question question)
     {
+        // ADD THIS: Hide finish elements when displaying a new question
+        // This ensures they're hidden when starting a new exam
+        HideFinishElements();
+
         uIElements.QuestionInfoTextObject.text = question.Info;
         CreateAnswers(question);
     }
@@ -153,20 +160,49 @@ public class QuizUI : MonoBehaviour
             case ResultScreenType.Incorrect:
                 uIElements.ResultPanel.color = parameters.IncorrectResultColor;
                 uIElements.RresultPanelInfoText.text = "WRONG!";
-                uIElements.ResultPanelScoreText.text = "0"; // No points deducted, show 0
+                uIElements.ResultPanelScoreText.text = ""; 
                 break;
             case ResultScreenType.Finish:
                 uIElements.ResultPanel.color = parameters.FinalResultColor;
                 uIElements.RresultPanelInfoText.text = "FINAL SCORE";
 
                 StartCoroutine(CalculateScore());
-                uIElements.FinishUIElements.gameObject.SetActive(true);
-                uIElements.TotalScoreText.gameObject.SetActive(true);
+
+                // Show finish elements only when exam is actually finished
+                ShowFinishElements();
 
                 // Calculate the new total score (previous + current session)
                 int maxScore = events.CurrentExamMaxScore;
                 uIElements.TotalScoreText.text = $"Score: {events.CurrentFinalScore} / {maxScore}";
                 break;
+        }
+    }
+
+    // ADD THIS: Method to show finish elements
+    private void ShowFinishElements()
+    {
+        if (uIElements.FinishUIElements != null)
+        {
+            uIElements.FinishUIElements.gameObject.SetActive(true);
+        }
+
+        if (uIElements.TotalScoreText != null)
+        {
+            uIElements.TotalScoreText.gameObject.SetActive(true);
+        }
+    }
+
+    // ADD THIS: Method to hide finish elements
+    private void HideFinishElements()
+    {
+        if (uIElements.FinishUIElements != null)
+        {
+            uIElements.FinishUIElements.gameObject.SetActive(false);
+        }
+
+        if (uIElements.TotalScoreText != null)
+        {
+            uIElements.TotalScoreText.gameObject.SetActive(false);
         }
     }
 

@@ -795,7 +795,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Keyboard Letters and Symbols_17
+      name: BKey
       rect:
         serializedVersion: 2
         x: 16
@@ -2811,6 +2811,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       AKey: 4508224336728285508
+      BKey: -5455942424890694613
       DKey: -5131799650079341723
       EKey: -173530099807541425
       Keyboard Letters and Symbols_0: -2789869647701826152
@@ -2829,7 +2830,6 @@ TextureImporter:
       Keyboard Letters and Symbols_13: 7842587756821644136
       Keyboard Letters and Symbols_14: -8819272233486428152
       Keyboard Letters and Symbols_15: 142651849634139828
-      Keyboard Letters and Symbols_17: -5455942424890694613
       Keyboard Letters and Symbols_18: 4956734507076722715
       Keyboard Letters and Symbols_2: -3836678269060062180
       Keyboard Letters and Symbols_21: -4657369681490478202

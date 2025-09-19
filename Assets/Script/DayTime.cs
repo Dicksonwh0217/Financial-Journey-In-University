@@ -333,6 +333,32 @@ public class DayTime : MonoBehaviour
         Debug.Log($"Jumped to 8:00 AM on Day {days + 1}");
     }
 
+    [ContextMenu("Jump to Day 25, 8:00 AM")]
+    public void JumpToDay25_8AM()
+    {
+        // Set to day 24 (since days is 0-indexed, day 25 = days = 24)
+        days = 24;
+
+        // Set time to 8:00 AM (28800 seconds)
+        time = 8f * 3600f; // 28800 seconds
+
+        // Update day of week for day 25
+        // Day 25 % 7 = day 3 (Wednesday)
+        dayOfWeek = (DayOfWeek)(days % 7);
+
+        // Update all UI elements and systems
+        UpdateDayText();
+        UpdateDayCountText();
+        TimeValueCalculation();
+        DayLight();
+        UpdateTimeSprite();
+
+        // Reset phase tracking for agents
+        oldPhase = CalculatePhase();
+
+        Debug.Log($"Jumped to Day 25, 8:00 AM ({dayOfWeek})");
+    }
+
     [ContextMenu("Jump to Day 45, 8:00 AM")]
     public void JumpToDay45_8AM()
     {
@@ -388,6 +414,7 @@ public class DayTime : MonoBehaviour
 
     // Alternative: Public methods that can be called from buttons or other scripts
     public void CallJumpTo8AM() => JumpTo8AM();
+    public void CallJumpToDay25_8AM() => JumpToDay25_8AM();
     public void CallJumpToDay45_8AM() => JumpToDay45_8AM();
     public void CallJumpToDay90_12PM() => JumpToDay90_12PM();
 }

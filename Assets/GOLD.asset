@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: GOLD Stock
   stackable: 1
   description: A natural mineral in earth. HIgh value and good assets to invest
-  itemType: 3
+  itemType: 4
   icon: {fileID: 21300000, guid: 4896d510e15858f479e17e8849d06a5b, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 0}
@@ -24,6 +24,11 @@ MonoBehaviour:
   itemPrefab: {fileID: 0}
   price: 274
   canBeSold: 1
+  consumable: 0
+  hungerRestoreAmount: 10
+  thirstRestoreAmount: 0
+  healthRestoreAmount: 0
+  happinessRestoreAmount: 0
   stockSymbol: GOLD
   basePrice: 200
   currentPrice: 200
@@ -62,3 +67,5 @@ MonoBehaviour:
   - 288.97437
   - 273.96423
   maxHistoryLength: 30
+  trendDirection: 0.0015
+  trendVolatility: 0.05

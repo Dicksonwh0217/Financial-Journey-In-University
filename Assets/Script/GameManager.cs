@@ -1,13 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
     private void Awake()
     {
         instance = this;
     }
+
     public GameObject player;
     public ItemContainer inventoryContainer;
     public ItemDragAndDropController dragAndDropController;
@@ -19,4 +20,5 @@ public class GameManager : MonoBehaviour
     public OptionDialogueSystem optionDialogueSystem;
     public DialogueActionHandler dialogueActionHandler;
     public AchievementManager achievementManager;
+    public StockMarketManager stockMarketManager;
 }

@@ -22,7 +22,7 @@ MonoBehaviour:
   onItemUsed: {fileID: 0}
   itemIconHighlight: 0
   itemPrefab: {fileID: 0}
-  price: 0
+  price: 1
   canBeSold: 0
   consumable: 1
   hungerRestoreAmount: 0

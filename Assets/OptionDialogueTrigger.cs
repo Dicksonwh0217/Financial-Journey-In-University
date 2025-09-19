@@ -21,12 +21,6 @@ public class OptionDialogueTrigger : Interactable
 
     void TriggerDialogue()
     {
-        if (GameManager.instance.dialogueActionHandler != null && GameManager.instance.dialogueActionHandler.HasQuizStarted())
-        {
-            Debug.Log("Cannot trigger option dialogue - quiz has started");
-            return;
-        }
-
         if (!canTriggerMultipleTimes && hasBeenTriggered)
             return;
 

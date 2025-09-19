@@ -7,6 +7,7 @@ public class StockMarketManager : MonoBehaviour
     [Header("Market Settings")]
     public List<Stock> availableStocks = new List<Stock>();
     public bool autoUpdatePrices = true;
+    public bool allowAfterHoursTrading = true; // Allow price updates when market is closed
 
     [Header("Market Hours")]
     public float marketOpenHour = 9f; // 9 AM
@@ -26,26 +27,46 @@ public class StockMarketManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            Debug.Log("StockMarketManager singleton created");
         }
         else
         {
+            Debug.Log("StockMarketManager singleton already exists, destroying duplicate");
             Destroy(gameObject);
         }
     }
 
     private void Start()
     {
-        // Check if DayTime singleton exists
+        StartCoroutine(InitializeManager());
+    }
+
+    private IEnumerator InitializeManager()
+    {
+        // Wait for DayTime to be ready
+        int attempts = 0;
+        while (DayTime.Instance == null && attempts < 100)
+        {
+            yield return new WaitForSeconds(0.1f);
+            attempts++;
+        }
+
         if (DayTime.Instance == null)
         {
-            Debug.LogError("StockMarketManager: DayTime singleton not found! Make sure DayTime is loaded first.");
-            return;
+            Debug.LogError("StockMarketManager: DayTime singleton not found after waiting! Make sure DayTime is loaded first.");
+            yield break;
         }
 
         // Initialize market state
         CheckMarketStatus();
+        lastCheckedDay = DayTime.Instance.days;
 
-        Debug.Log($"StockMarketManager initialized. Current game time: {GetCurrentTimeString()}");
+        Debug.Log($"StockMarketManager initialized successfully!");
+        Debug.Log($"Current game time: {GetCurrentTimeString()}");
+        Debug.Log($"Market should be {(ShouldMarketBeOpen() ? "OPEN" : "CLOSED")} at this time");
+
+        // Force initial market status update
+        UpdateAllStockMarkets();
     }
 
     private void Update()
@@ -65,12 +86,18 @@ public class StockMarketManager : MonoBehaviour
         CheckMarketStatus();
     }
 
+    private bool ShouldMarketBeOpen()
+    {
+        if (DayTime.Instance == null) return false;
+        float currentHour = DayTime.Instance.Hours;
+        return (currentHour >= marketOpenHour && currentHour < marketCloseHour);
+    }
+
     private void CheckMarketStatus()
     {
         if (DayTime.Instance == null) return;
 
-        float currentHour = DayTime.Instance.Hours;
-        bool shouldBeOpen = (currentHour >= marketOpenHour && currentHour < marketCloseHour);
+        bool shouldBeOpen = ShouldMarketBeOpen();
 
         // Only open if market should be open and hasn't opened today yet
         if (shouldBeOpen && !isMarketOpen && !hasOpenedToday)
@@ -111,7 +138,7 @@ public class StockMarketManager : MonoBehaviour
     {
         // Find all StockMarket instances and update their status
         StockMarket[] stockMarkets = FindObjectsOfType<StockMarket>();
-        Debug.Log($"Found {stockMarkets.Length} StockMarket instances to update");
+        Debug.Log($"Updating {stockMarkets.Length} StockMarket instances with market status: {(isMarketOpen ? "OPEN" : "CLOSED")}");
 
         foreach (var market in stockMarkets)
         {
@@ -151,18 +178,31 @@ public class StockMarketManager : MonoBehaviour
 
     private void GenerateOvernightPriceChanges()
     {
+        if (!allowAfterHoursTrading)
+        {
+            Debug.Log("After-hours trading disabled - skipping overnight price changes");
+            return;
+        }
+
         Debug.Log("Generating overnight price changes...");
 
-        // Simulate overnight price changes
         foreach (var stock in availableStocks)
         {
             if (stock != null && stock.isActive)
             {
-                float overnightChange = Random.Range(-stock.volatility * 0.3f, stock.volatility * 0.3f);
-                float newPrice = stock.currentPrice * (1 + overnightChange);
+                // Reduced volatility for after-hours trading
+                float overnightVolatility = Random.Range(-stock.volatility * 0.3f, stock.volatility * 0.3f);
+
+                // Reduced trend for overnight (since it's a longer period, we don't want too much change)
+                float overnightTrend = stock.trendDirection * 0.5f; // Half the normal trend
+                float trendVariation = Random.Range(-stock.trendVolatility * 0.5f, stock.trendVolatility * 0.5f);
+
+                float totalOvernightChange = overnightTrend + trendVariation + overnightVolatility;
+                float newPrice = stock.currentPrice * (1 + totalOvernightChange);
                 newPrice = Mathf.Max(newPrice, 1f);
 
-                Debug.Log($"Stock {stock.name}: {stock.currentPrice:F2} -> {newPrice:F2} (Change: {overnightChange:P2})");
+                Debug.Log($"Overnight Stock {stock.name}: {stock.currentPrice:F2} -> {newPrice:F2} " +
+                         $"(Trend: {(overnightTrend + trendVariation):P3}, Volatility: {overnightVolatility:P3})");
 
                 stock.UpdatePrice(newPrice);
                 stock.price = Mathf.RoundToInt(stock.currentPrice);
@@ -218,9 +258,25 @@ public class StockMarketManager : MonoBehaviour
     [ContextMenu("Print Current Status")]
     public void PrintCurrentStatus()
     {
-        Debug.Log($"Current Time: {GetCurrentTimeString()}, Day: {GetCurrentDay()}, Market Open: {isMarketOpen}");
+        Debug.Log($"=== STOCK MARKET MANAGER STATUS ===");
+        Debug.Log($"Current Time: {GetCurrentTimeString()}, Day: {GetCurrentDay()}");
+        Debug.Log($"Market Status: {(isMarketOpen ? "OPEN" : "CLOSED")}");
+        Debug.Log($"Should Market Be Open: {ShouldMarketBeOpen()}");
+        Debug.Log($"Market Hours: {marketOpenHour:00}:00 - {marketCloseHour:00}:00");
         Debug.Log($"Available Stocks: {availableStocks.Count}");
         Debug.Log($"Has Opened Today: {hasOpenedToday}, Has Closed Today: {hasClosedToday}");
+        Debug.Log($"Last Checked Day: {lastCheckedDay}");
+
+        // Also check all StockMarket instances
+        StockMarket[] stockMarkets = FindObjectsOfType<StockMarket>();
+        Debug.Log($"Found {stockMarkets.Length} StockMarket instances in scene");
+    }
+
+    [ContextMenu("Force Update All Markets")]
+    public void ForceUpdateAllMarkets()
+    {
+        Debug.Log("Forcing update of all StockMarket instances...");
+        UpdateAllStockMarkets();
     }
 
     [ContextMenu("Skip to Market Open")]

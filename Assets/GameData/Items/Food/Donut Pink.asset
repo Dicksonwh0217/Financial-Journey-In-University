@@ -28,4 +28,4 @@ MonoBehaviour:
   hungerRestoreAmount: 5
   thirstRestoreAmount: 0
   healthRestoreAmount: 0
-  happinessRestoreAmount: 0
+  happinessRestoreAmount: 2

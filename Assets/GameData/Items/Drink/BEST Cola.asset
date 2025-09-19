@@ -27,5 +27,5 @@ MonoBehaviour:
   consumable: 1
   hungerRestoreAmount: 0
   thirstRestoreAmount: 10
-  healthRestoreAmount: 2
-  happinessRestoreAmount: 6
+  healthRestoreAmount: -2
+  happinessRestoreAmount: 4

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a95da69efdf5949aeddab4f857e25a, type: 3}
+  m_Name: Onigiri
+  m_EditorClassIdentifier: 
+  Name: Onigiri
+  stackable: 1
+  description: Japanese rice ball.
+  itemType: 0
+  icon: {fileID: 21300000, guid: 36489ec0b84ebf744b49224f13484bf3, type: 3}
+  onAction: {fileID: 0}
+  onTileMapAction: {fileID: 0}
+  onItemUsed: {fileID: 0}
+  itemIconHighlight: 0
+  itemPrefab: {fileID: 0}
+  price: 4
+  canBeSold: 0
+  consumable: 1
+  hungerRestoreAmount: 12
+  thirstRestoreAmount: 0
+  healthRestoreAmount: 4
+  happinessRestoreAmount: 0

@@ -262,11 +262,6 @@ public class QuizManager : MonoBehaviour
         quizStarted = true;
         events.CurrentExamType = currentExaminationType;
 
-        if (GameManager.instance != null && GameManager.instance.dialogueActionHandler != null)
-        {
-            GameManager.instance.dialogueActionHandler.OnQuizStarted();
-        }
-
         if (quizPanel != null)
         {
             quizPanel.SetActive(true);

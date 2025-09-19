@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: GlobalStorageContainer
   m_EditorClassIdentifier: 
   slots:
-  - item: {fileID: 0}
-    count: 0
-  - item: {fileID: 0}
-    count: 0
-  - item: {fileID: 0}
-    count: 0
+  - item: {fileID: 11400000, guid: ef889ab97a83ed8418e3af04a395078b, type: 2}
+    count: 99
+  - item: {fileID: 11400000, guid: ef889ab97a83ed8418e3af04a395078b, type: 2}
+    count: 99
+  - item: {fileID: 11400000, guid: ef889ab97a83ed8418e3af04a395078b, type: 2}
+    count: 99
   - item: {fileID: 0}
     count: 0
   - item: {fileID: 0}

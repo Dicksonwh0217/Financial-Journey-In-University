@@ -19495,6 +19495,10 @@ MonoBehaviour:
   storeContent: {fileID: 11400000, guid: 37b2e902f688fcf42b7aac73882c2b13, type: 2}
   buyFromPlayerMultip: 1
   sellToPlayerMultip: 1
+  hasPartTimeJob: 0
+  jobStartHour1: 8
+  jobStartHour2: 16
+  timeWindow: 1
 --- !u!1 &1700474711
 GameObject:
   m_ObjectHideFlags: 0
@@ -21376,6 +21380,7 @@ GameObject:
   - component: {fileID: 2041474301}
   - component: {fileID: 2041474300}
   - component: {fileID: 2041474299}
+  - component: {fileID: 2041474303}
   m_Layer: 0
   m_Name: VendingMachine
   m_TagString: Untagged
@@ -21514,6 +21519,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2041474303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041474298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6acddd7ce8861342bfc66695719c2ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  storeContent: {fileID: 11400000, guid: 37b2e902f688fcf42b7aac73882c2b13, type: 2}
+  buyFromPlayerMultip: 1
+  sellToPlayerMultip: 1
+  hasPartTimeJob: 0
+  jobStartHour1: 8
+  jobStartHour2: 16
+  timeWindow: 1
 --- !u!1001 &2042633777
 PrefabInstance:
   m_ObjectHideFlags: 0

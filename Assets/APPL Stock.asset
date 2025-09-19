@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: APPL Stock
   stackable: 1
   description: A tech company created Apple product.
-  itemType: 3
+  itemType: 4
   icon: {fileID: 21300000, guid: 244f756045d64c3408e685df5936e763, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 0}
@@ -24,11 +24,16 @@ MonoBehaviour:
   itemPrefab: {fileID: 0}
   price: 24
   canBeSold: 1
+  consumable: 0
+  hungerRestoreAmount: 10
+  thirstRestoreAmount: 0
+  healthRestoreAmount: 0
+  happinessRestoreAmount: 0
   stockSymbol: APPL
   basePrice: 180
   currentPrice: 180
   previousDayPrice: 180
-  volatility: 0.08
+  volatility: 0.07
   isActive: 1
   priceHistory:
   - 131.4646
@@ -62,3 +67,5 @@ MonoBehaviour:
   - 23.102571
   - 24.065622
   maxHistoryLength: 30
+  trendDirection: 0.0018
+  trendVolatility: 0.0003

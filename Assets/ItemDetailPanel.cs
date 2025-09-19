@@ -54,7 +54,17 @@ public class ItemDetailPanel : MonoBehaviour
         if (itemDescription != null)
             itemDescription.text = item.description;
         if (itemPrice != null)
-            itemPrice.text = item.price.ToString();
+        {
+            // Check if the item is a Stock and use currentPrice instead of price
+            if (item is Stock stock)
+            {
+                itemPrice.text = stock.currentPrice.ToString("F2");
+            }
+            else
+            {
+                itemPrice.text = item.price.ToString("F2");
+            }
+        }
         if (itemType != null)
             itemType.text = item.itemType.ToString();
 
@@ -83,30 +93,42 @@ public class ItemDetailPanel : MonoBehaviour
             // Update effect text values
             if (hungerRestoreText != null)
             {
-                hungerRestoreText.text = $"+{item.HungerRestoreAmount}";
-                // Hide the text if the value is 0
-                hungerRestoreText.gameObject.SetActive(item.HungerRestoreAmount >= 0);
+                hungerRestoreText.text = item.HungerRestoreAmount >= 0 ?
+                    $"+{item.HungerRestoreAmount}" :
+                    $"{item.HungerRestoreAmount}"; // Negative sign already included
+
+                // Always show the text
+                hungerRestoreText.gameObject.SetActive(true);
             }
 
             if (thirstRestoreText != null)
             {
-                thirstRestoreText.text = $"+{item.ThirstRestoreAmount}";
-                // Hide the text if the value is 0
-                thirstRestoreText.gameObject.SetActive(item.ThirstRestoreAmount >= 0);
+                thirstRestoreText.text = item.ThirstRestoreAmount >= 0 ?
+                    $"+{item.ThirstRestoreAmount}" :
+                    $"{item.ThirstRestoreAmount}"; // Negative sign already included
+
+                // Always show the text
+                thirstRestoreText.gameObject.SetActive(true);
             }
 
             if (healthRestoreText != null)
             {
-                healthRestoreText.text = $"+{item.HealthRestoreAmount}";
-                // Hide the text if the value is 0
-                healthRestoreText.gameObject.SetActive(item.HealthRestoreAmount >= 0);
+                healthRestoreText.text = item.HealthRestoreAmount >= 0 ?
+                    $"+{item.HealthRestoreAmount}" :
+                    $"{item.HealthRestoreAmount}"; // Negative sign already included
+
+                // Always show the text
+                healthRestoreText.gameObject.SetActive(true);
             }
 
             if (happinessRestoreText != null)
             {
-                happinessRestoreText.text = $"+{item.HappinessRestoreAmount}";
-                // Hide the text if the value is 0
-                happinessRestoreText.gameObject.SetActive(item.HappinessRestoreAmount >= 0);
+                happinessRestoreText.text = item.HappinessRestoreAmount >= 0 ?
+                    $"+{item.HappinessRestoreAmount}" :
+                    $"{item.HappinessRestoreAmount}"; // Negative sign already included
+
+                // Always show the text
+                happinessRestoreText.gameObject.SetActive(true);
             }
         }
     }

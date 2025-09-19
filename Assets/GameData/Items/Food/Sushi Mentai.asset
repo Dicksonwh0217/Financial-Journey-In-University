@@ -25,7 +25,7 @@ MonoBehaviour:
   price: 3
   canBeSold: 0
   consumable: 1
-  hungerRestoreAmount: 10
+  hungerRestoreAmount: 6
   thirstRestoreAmount: 0
   healthRestoreAmount: 0
   happinessRestoreAmount: 0

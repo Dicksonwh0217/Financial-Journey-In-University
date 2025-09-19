@@ -104,7 +104,7 @@ public class StockTrading : MonoBehaviour
         ItemSlot stockSlot = stockMarket.stockInventory.slots[id];
         if (stockSlot.item == null || !(stockSlot.item is Stock stock)) return;
 
-        int stockPrice = Mathf.RoundToInt(stock.currentPrice);
+        float stockPrice = stock.currentPrice; // Changed from int to float
 
         if (money.Check(stockPrice))
         {
@@ -134,7 +134,7 @@ public class StockTrading : MonoBehaviour
                 agentDialogue.ShowBuySuccess(stock.name);
             }
 
-            Debug.Log($"Bought 1 share of {stock.stockSymbol} for RM{stockPrice}");
+            Debug.Log($"Bought 1 share of {stock.stockSymbol} for RM{stockPrice:F2}"); // Added :F2 for decimal formatting
         }
         else
         {
@@ -170,10 +170,10 @@ public class StockTrading : MonoBehaviour
             return;
         }
 
-        int sellPrice = Mathf.RoundToInt(stock.currentPrice);
+        float sellPrice = stock.currentPrice; // Changed from int to float
 
         // Calculate money gain
-        int moneyGain = stock.stackable ?
+        float moneyGain = stock.stackable ? // Changed from int to float
             sellPrice * dragController.itemSlot.count :
             sellPrice;
 
@@ -182,7 +182,7 @@ public class StockTrading : MonoBehaviour
         // Show success message before clearing the slot
         if (agentDialogue != null)
         {
-            agentDialogue.ShowSellSuccess(stock.name, moneyGain);
+            agentDialogue.ShowSellSuccess(stock.name, (int)moneyGain); // Cast to int for dialogue if needed
         }
 
         dragController.itemSlot.Clear();
@@ -195,7 +195,7 @@ public class StockTrading : MonoBehaviour
             toolbarPanel.Show();
         }
 
-        Debug.Log($"Sold stock for RM{moneyGain}");
+        Debug.Log($"Sold stock for RM{moneyGain:F2}"); // Added :F2 for decimal formatting
     }
 
     public void BuyStockPartial(int id)
@@ -225,13 +225,13 @@ public class StockTrading : MonoBehaviour
             return;
         }
 
-        int sellPrice = Mathf.RoundToInt(stock.currentPrice);
+        float sellPrice = stock.currentPrice; // Changed from int to float
         money.Add(sellPrice);
 
         // Show success message for partial sell
         if (agentDialogue != null)
         {
-            agentDialogue.ShowSellSuccess(stock.name, sellPrice);
+            agentDialogue.ShowSellSuccess(stock.name, (int)sellPrice); // Cast to int for dialogue if needed
         }
 
         // Remove one stock from held stack
@@ -250,7 +250,7 @@ public class StockTrading : MonoBehaviour
             toolbarPanel.Show();
         }
 
-        Debug.Log($"Sold 1 share for RM{sellPrice}");
+        Debug.Log($"Sold 1 share for RM{sellPrice:F2}"); // Added :F2 for decimal formatting
     }
 
     public float GetPortfolioValue()

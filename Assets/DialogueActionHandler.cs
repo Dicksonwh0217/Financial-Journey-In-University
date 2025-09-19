@@ -4,35 +4,6 @@ using UnityEngine.Events;
 
 public class DialogueActionHandler : MonoBehaviour
 {
-    #region Quiz Control System
-    [Header("Quiz Control")]
-    [SerializeField] private bool quizHasStarted = false;
-
-    /// <summary>
-    /// Called by QuizManager when the quiz starts
-    /// </summary>
-    public void OnQuizStarted()
-    {
-        quizHasStarted = true;
-    }
-
-    /// <summary>
-    /// Check if quiz has started (useful for other scripts)
-    /// </summary>
-    public bool HasQuizStarted()
-    {
-        return quizHasStarted;
-    }
-
-    /// <summary>
-    /// Manually reset quiz state (for testing or game restart)
-    /// </summary>
-    public void ResetQuizState()
-    {
-        quizHasStarted = false;
-        Debug.Log("Quiz state reset");
-    }
-    #endregion
 
     #region Dialogue Action System
     [Header("Global Dialogue Actions")]

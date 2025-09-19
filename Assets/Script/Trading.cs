@@ -65,8 +65,8 @@ public class Trading : MonoBehaviour
         }
 
         Item itemToBuy = store.storeContent.slots[id].item;
+        float totalPrice = itemToBuy.price * store.sellToPlayerMultip; // Changed from int to float
 
-        int totalPrice = (int)(itemToBuy.price * store.sellToPlayerMultip);
         if (money.Check(totalPrice) == true)
         {
             AudioManager.instance.Play(PurchaseSFX);
@@ -79,9 +79,12 @@ public class Trading : MonoBehaviour
             {
                 toolbarPanel.Show();
             }
+
+            Debug.Log($"Bought {itemToBuy.name} for {totalPrice:F2}"); // Optional debug log with decimal formatting
         }
         else
         {
+            Debug.Log($"Not enough money to buy {itemToBuy.name}. Price: {totalPrice:F2}, Current money: {money.GetAmount():F2}"); // Optional debug log
         }
     }
 
@@ -90,9 +93,10 @@ public class Trading : MonoBehaviour
         if (GameManager.instance.dragAndDropController.CheckForSale() == true)
         {
             ItemSlot itemToSell = GameManager.instance.dragAndDropController.itemSlot;
-            int moneyGain = itemToSell.item.stackable == true ?
-                (int)(itemToSell.item.price * itemToSell.count * store.buyFromPlayerMultip) :  // total money gain if item is stackable
-                (int)(itemToSell.item.price * store.buyFromPlayerMultip); // total money gain if item is not stackable
+
+            float moneyGain = itemToSell.item.stackable == true ? // Changed from int to float
+                (itemToSell.item.price * itemToSell.count * store.buyFromPlayerMultip) :  // total money gain if item is stackable
+                (itemToSell.item.price * store.buyFromPlayerMultip); // total money gain if item is not stackable
 
             money.Add(moneyGain);
             itemToSell.Clear();
@@ -104,6 +108,8 @@ public class Trading : MonoBehaviour
             {
                 toolbarPanel.Show();
             }
+
+            Debug.Log($"Sold {itemToSell.item.name} for {moneyGain:F2}"); // Optional debug log with decimal formatting
         }
     }
 }

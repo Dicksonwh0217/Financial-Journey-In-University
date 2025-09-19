@@ -13,12 +13,28 @@ MonoBehaviour:
   m_Name: StoreContent
   m_EditorClassIdentifier: 
   slots:
+  - item: {fileID: 11400000, guid: d1540d7d9f24b4b44b48dcf392e59e78, type: 2}
+    count: 99
+  - item: {fileID: 11400000, guid: 0483e78ce9c88b84ea42d97f63fe96a6, type: 2}
+    count: 99
+  - item: {fileID: 11400000, guid: 4916f2a282f44e94db4341c72f89644c, type: 2}
+    count: 99
+  - item: {fileID: 11400000, guid: ef889ab97a83ed8418e3af04a395078b, type: 2}
+    count: 99
+  - item: {fileID: 11400000, guid: 698e43cd7a2b6c34f9a55c23ef0b9c43, type: 2}
+    count: 99
+  - item: {fileID: 11400000, guid: 8d61ea79c706a6543a178c375dbba9d4, type: 2}
+    count: 99
+  - item: {fileID: 11400000, guid: a956ebd39825f2d49a50aa000c89a757, type: 2}
+    count: 99
   - item: {fileID: 11400000, guid: 8fed1d282633941448db43f29c188713, type: 2}
     count: 99
   - item: {fileID: 11400000, guid: 44038f37d2eac2d4fb026f9025c62132, type: 2}
     count: 99
   - item: {fileID: 11400000, guid: 41d6d188a1574a24aab3f75c54386509, type: 2}
     count: 99
-  - item: {fileID: 11400000, guid: ef889ab97a83ed8418e3af04a395078b, type: 2}
+  - item: {fileID: 11400000, guid: 6c370757a3be1484d8e15841481ee10b, type: 2}
+    count: 99
+  - item: {fileID: 11400000, guid: 5ddacf96325eeff448fce0dec41471cc, type: 2}
     count: 99
   isDirty: 0

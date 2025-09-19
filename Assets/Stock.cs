@@ -17,6 +17,10 @@ public class Stock : Item
     public List<float> priceHistory = new List<float>();
     public int maxHistoryLength = 30;
 
+    [Header("Stock Trend Settings")]
+    public float trendDirection = 0.002f; // 0.2% upward trend per update (adjustable per stock)
+    public float trendVolatility = 0.001f; // Small random variation in trend strength
+
     public System.Action<Stock> OnPriceChanged;
 
     private void OnEnable()

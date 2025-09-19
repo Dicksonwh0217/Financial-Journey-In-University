@@ -25,7 +25,7 @@ public class Item : ScriptableObject
     public ToolAction onItemUsed;
     public bool itemIconHighlight;
     public GameObject itemPrefab;
-    public int price;
+    public float price;
     public bool canBeSold = true;
 
     [Header("Consumable Properties")]

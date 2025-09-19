@@ -3,6 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
+
+[System.Serializable]
+public class ScheduledBill
+{
+    public string billName;
+    public float amount;
+    public Sprite icon;
+    public int expireDays = 15;
+}
 
 public class BillPanel : MonoBehaviour
 {
@@ -15,12 +25,35 @@ public class BillPanel : MonoBehaviour
     [Header("Pre-configured Bills - Set in Inspector")]
     [SerializeField] private List<GameObject> predefinedBills = new List<GameObject>();
 
+    [Header("Fixed Expense Bills (Days 1, 31, 61)")]
+    [SerializeField]
+    private ScheduledBill[] fixedExpenseBills = new ScheduledBill[]
+    {
+        new ScheduledBill { billName = "Rental", amount = 300f, expireDays = 15 },
+        new ScheduledBill { billName = "Utility", amount = 50f, expireDays = 15 },
+        new ScheduledBill { billName = "Phone Bill", amount = 35f, expireDays = 15 }
+    };
+
+    [Header("University Bills")]
+    [SerializeField]
+    private ScheduledBill[] universityBills = new ScheduledBill[]
+    {
+        new ScheduledBill { billName = "University Tuition Fee - Semester 1", amount = 2000f, expireDays = 30 },
+        new ScheduledBill { billName = "University Tuition Fee - Semester 2", amount = 2000f, expireDays = 30 }
+    };
+
+    [Header("Bill Generation Settings")]
+    [SerializeField] private int[] fixedExpenseDays = { 1, 31, 61 };
+    [SerializeField] private int[] universityBillDays = { 25, 55 };
+
     [Header("Settings")]
     [SerializeField] private float statusDisplayTime = 2f;
 
     private List<Bill> activeBills = new List<Bill>();
     private Currency currencySystem;
     private Coroutine statusCoroutine;
+    private HashSet<string> generatedBills; // Track which bills have been generated
+    private int lastCheckedDay = -1;
 
     // Singleton pattern
     public static BillPanel Instance { get; private set; }
@@ -30,6 +63,8 @@ public class BillPanel : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            generatedBills = new HashSet<string>();
+            LoadGeneratedBills();
         }
         else if (Instance != this)
         {
@@ -57,12 +92,105 @@ public class BillPanel : MonoBehaviour
 
         // Initialize predefined bills from inspector
         InitializePredefinedBills();
+
+        // Check for bills to generate
+        CheckForScheduledBills();
     }
 
     private void Update()
     {
+        // Check for new bills to generate
+        CheckForScheduledBills();
+
         // Clean up expired bills periodically
         CleanupExpiredBills();
+    }
+
+    private void CheckForScheduledBills()
+    {
+        if (DayTime.Instance == null) return;
+
+        int currentDay = DayTime.Instance.days + 1; // Add 1 because days is 0-indexed
+
+        // Only check if we haven't checked this day yet
+        if (currentDay != lastCheckedDay)
+        {
+            lastCheckedDay = currentDay;
+
+            // Check for fixed expense bills (days 1, 31, 61)
+            foreach (int day in fixedExpenseDays)
+            {
+                if (currentDay == day)
+                {
+                    GenerateFixedExpenseBills(day);
+                    break;
+                }
+            }
+
+            // Check for university bills (days 25, 55)
+            for (int i = 0; i < universityBillDays.Length; i++)
+            {
+                if (currentDay == universityBillDays[i])
+                {
+                    GenerateUniversityBill(currentDay, i);
+                    break;
+                }
+            }
+        }
+    }
+
+    private void GenerateFixedExpenseBills(int day)
+    {
+        foreach (ScheduledBill scheduledBill in fixedExpenseBills)
+        {
+            string billKey = $"{scheduledBill.billName}_Day{day}";
+
+            if (!generatedBills.Contains(billKey))
+            {
+                CreateBill(scheduledBill.billName, scheduledBill.amount, scheduledBill.icon, scheduledBill.expireDays);
+                generatedBills.Add(billKey);
+                SaveGeneratedBills();
+
+                Debug.Log($"Generated fixed expense bill: {scheduledBill.billName} - ${scheduledBill.amount} on Day {day}");
+            }
+        }
+    }
+
+    private void GenerateUniversityBill(int day, int semesterIndex)
+    {
+        if (semesterIndex < universityBills.Length)
+        {
+            ScheduledBill universityBill = universityBills[semesterIndex];
+            string billKey = $"{universityBill.billName}_Day{day}";
+
+            if (!generatedBills.Contains(billKey))
+            {
+                CreateBill(universityBill.billName, universityBill.amount, universityBill.icon, universityBill.expireDays);
+                generatedBills.Add(billKey);
+                SaveGeneratedBills();
+
+                Debug.Log($"Generated university bill: {universityBill.billName} - ${universityBill.amount} on Day {day}");
+            }
+        }
+    }
+
+    private void CreateBill(string billName, float amount, Sprite icon, int expireDays)
+    {
+        if (billPrefab == null || billContainer == null)
+        {
+            Debug.LogError("Bill prefab or container not assigned!");
+            return;
+        }
+
+        // Create new bill
+        GameObject newBillObj = Instantiate(billPrefab, billContainer);
+        Bill newBill = newBillObj.GetComponent<Bill>();
+
+        if (newBill != null)
+        {
+            newBill.Initialize(billName, amount, icon, expireDays);
+            activeBills.Add(newBill);
+        }
     }
 
     public void ToggleBillPanel()
@@ -158,22 +286,7 @@ public class BillPanel : MonoBehaviour
     // Method to add new bills at runtime (optional - for dynamic bill creation)
     public void AddBill(string billName, float amount, Sprite icon, int expireInDays)
     {
-        if (billPrefab == null || billContainer == null)
-        {
-            Debug.LogError("Bill prefab or container not assigned!");
-            return;
-        }
-
-        // Create new bill
-        GameObject newBillObj = Instantiate(billPrefab, billContainer);
-        Bill newBill = newBillObj.GetComponent<Bill>();
-
-        if (newBill != null)
-        {
-            newBill.Initialize(billName, amount, icon, expireInDays);
-            activeBills.Add(newBill);
-            Debug.Log($"Added new bill: {billName} - ${amount:F2} (expires in {expireInDays} days)");
-        }
+        CreateBill(billName, amount, icon, expireInDays);
     }
 
     private void RefreshBillDisplay()
@@ -228,14 +341,49 @@ public class BillPanel : MonoBehaviour
         }
     }
 
+    // Save and load generated bills tracking
+    private void SaveGeneratedBills()
+    {
+        string generatedBillsString = string.Join(",", generatedBills);
+        PlayerPrefs.SetString("GeneratedBills", generatedBillsString);
+        PlayerPrefs.Save();
+    }
+
+    private void LoadGeneratedBills()
+    {
+        string generatedBillsString = PlayerPrefs.GetString("GeneratedBills", "");
+        generatedBills.Clear();
+
+        if (!string.IsNullOrEmpty(generatedBillsString))
+        {
+            string[] billKeys = generatedBillsString.Split(',');
+            foreach (string billKey in billKeys)
+            {
+                if (!string.IsNullOrEmpty(billKey))
+                {
+                    generatedBills.Add(billKey);
+                }
+            }
+        }
+    }
+
+    // Reset bill generation for new games
+    public void ResetBillGeneration()
+    {
+        generatedBills.Clear();
+        SaveGeneratedBills();
+        lastCheckedDay = -1;
+        Debug.Log("Bill generation reset for new game!");
+    }
+
     // Optional: Method to add random bills (can be called from other systems)
     public void GenerateRandomBill()
     {
-        string[] billNames = { "Phone Bill", "Gas Bill", "Cable TV", "Gym Membership", "Car Payment" };
-        float[] amounts = { 45f, 75f, 85f, 30f, 350f };
+        string[] billNames = { "Insurance", "Car Maintenance", "Internet Bill", "Water Bill" };
+        float[] amounts = { 120f, 200f, 60f, 25f };
 
-        int randomIndex = Random.Range(0, billNames.Length);
-        int randomExpireDays = Random.Range(15, 45);
+        int randomIndex = UnityEngine.Random.Range(0, billNames.Length);
+        int randomExpireDays = UnityEngine.Random.Range(10, 20);
 
         AddBill(billNames[randomIndex], amounts[randomIndex], null, randomExpireDays);
     }
@@ -272,19 +420,6 @@ public class BillPanel : MonoBehaviour
         return totalAmount;
     }
 
-    // Context menu for testing
-    [ContextMenu("Add Random Bill")]
-    public void AddRandomBillFromMenu()
-    {
-        GenerateRandomBill();
-    }
-
-    [ContextMenu("Refresh Bills")]
-    public void RefreshBillsFromMenu()
-    {
-        RefreshBillDisplay();
-    }
-
     public bool HasExpiredBills()
     {
         foreach (Bill bill in activeBills)
@@ -297,7 +432,6 @@ public class BillPanel : MonoBehaviour
         return false;
     }
 
-    // Get count of expired bills
     public int GetExpiredBillCount()
     {
         int expiredCount = 0;
@@ -311,7 +445,6 @@ public class BillPanel : MonoBehaviour
         return expiredCount;
     }
 
-    // Get total amount of expired bills
     public float GetTotalExpiredAmount()
     {
         float totalAmount = 0f;
@@ -325,7 +458,6 @@ public class BillPanel : MonoBehaviour
         return totalAmount;
     }
 
-    // Method to check if player has any critical expired bills (for ending conditions)
     public bool HasCriticalExpiredBills(int gracePeriodDays = 7)
     {
         int currentDay = DayTime.Instance != null ? DayTime.Instance.days : 0;
@@ -337,7 +469,6 @@ public class BillPanel : MonoBehaviour
                 int expirationDay = bill.CreationDay + bill.ExpireDays;
                 int daysPastExpiration = currentDay - expirationDay;
 
-                // If bill expired more than grace period days ago, it's critical
                 if (daysPastExpiration > gracePeriodDays)
                 {
                     return true;
@@ -347,7 +478,70 @@ public class BillPanel : MonoBehaviour
         return false;
     }
 
-    // Debug method to log bill status
+    // Context menu methods for testing
+    [ContextMenu("Force Generate Day 1 Bills")]
+    public void ForceGenerateDay1Bills()
+    {
+        GenerateFixedExpenseBills(1);
+    }
+
+    [ContextMenu("Force Generate Day 25 University Bill")]
+    public void ForceGenerateDay25UniversityBill()
+    {
+        GenerateUniversityBill(25, 0);
+    }
+
+    [ContextMenu("Force Generate Day 31 Bills")]
+    public void ForceGenerateDay31Bills()
+    {
+        GenerateFixedExpenseBills(31);
+    }
+
+    [ContextMenu("Force Generate Day 55 University Bill")]
+    public void ForceGenerateDay55UniversityBill()
+    {
+        GenerateUniversityBill(55, 1);
+    }
+
+    [ContextMenu("Force Generate Day 61 Bills")]
+    public void ForceGenerateDay61Bills()
+    {
+        GenerateFixedExpenseBills(61);
+    }
+
+    [ContextMenu("Show Bill Generation Status")]
+    public void ShowBillGenerationStatus()
+    {
+        int currentDay = DayTime.Instance != null ? DayTime.Instance.days + 1 : 0;
+        Debug.Log($"=== BILL GENERATION STATUS ===");
+        Debug.Log($"Current Day: {currentDay}");
+        Debug.Log($"Last Checked Day: {lastCheckedDay}");
+        Debug.Log($"Generated Bills: [{string.Join(", ", generatedBills)}]");
+        Debug.Log($"Active Bills Count: {activeBills.Count}");
+        Debug.Log($"Unpaid Bills Count: {GetUnpaidBillCount()}");
+        Debug.Log($"Total Unpaid Amount: ${GetTotalUnpaidAmount():F2}");
+    }
+
+    [ContextMenu("Reset Bill Generation (Testing)")]
+    public void ResetBillGenerationFromMenu()
+    {
+        ResetBillGeneration();
+    }
+
+    [ContextMenu("Clear All Bills")]
+    public void ClearAllBills()
+    {
+        for (int i = activeBills.Count - 1; i >= 0; i--)
+        {
+            if (activeBills[i] != null && activeBills[i].gameObject != null)
+            {
+                Destroy(activeBills[i].gameObject);
+            }
+        }
+        activeBills.Clear();
+        Debug.Log("All bills cleared");
+    }
+
     [ContextMenu("Debug Bill Status")]
     public void DebugBillStatus()
     {
@@ -367,20 +561,5 @@ public class BillPanel : MonoBehaviour
                 Debug.Log($"- {bill.BillName}: ${bill.Amount:F2} [{status}]");
             }
         }
-    }
-
-    // Method to reset all bills (useful for testing)
-    [ContextMenu("Clear All Bills")]
-    public void ClearAllBills()
-    {
-        for (int i = activeBills.Count - 1; i >= 0; i--)
-        {
-            if (activeBills[i] != null && activeBills[i].gameObject != null)
-            {
-                Destroy(activeBills[i].gameObject);
-            }
-        }
-        activeBills.Clear();
-        Debug.Log("All bills cleared");
     }
 }
